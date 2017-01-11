@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>hr_splash</class>
+ <widget class="QMainWindow" name="hr_splash">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/hr_depart.png);
+background-repeat: no-repeat;
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="searchUser">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>300</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+background-image: url(:/icons/icons/search.png) ;
+background-position: center;
+ background-color: #ed1c24;
+ border-width:1px;
+ border-radius:40px;
+max-width:80px;
+ max-height:80x;
+ min-width:80px;
+ min-height:80px;
+
+
+}
+QPushButton:hover
+{
+ background-color:  #c2c2c2;
+}
+
+ 
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="searchLabel">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>380</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(104, 104, 104);
+</string>
+    </property>
+    <property name="text">
+     <string>SEARCH USER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addUser">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>300</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+background-image: url(:/icons/icons/add_user.png) inherit;
+background-position: center;
+ background-color: #ED1C24;
+ border-width:1px;
+ border-radius:40px;
+max-width:80px;
+ max-height:80x;
+ min-width:80px;
+ min-height:80px;
+
+
+}
+QPushButton:hover
+{
+ background-color:  #c2c2c2;
+}
+
+ 
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="addLabel">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>380</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(104, 104, 104);
+</string>
+    </property>
+    <property name="text">
+     <string>ADD USER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="editUser">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>300</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+background-image: url(:/icons/icons/edit_user.png);
+background-position: center;
+ background-color: #ED1C24;
+ border-width:1px;
+ border-radius:40px;
+max-width:80px;
+ max-height:80x;
+ min-width:80px;
+ min-height:80px;
+
+
+}
+QPushButton:hover
+{
+ background-color:  #c2c2c2;
+}
+
+ 
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="editLabel">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>380</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(104, 104, 104);
+</string>
+    </property>
+    <property name="text">
+     <string>EDIT USER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeUser">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>300</y>
+      <width>80</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+background-image: url(:/icons/icons/remove_user.png) inherit;
+background-position: center;
+ background-color: #ED1C24;
+ border-width:1px;
+ border-radius:40px;
+max-width:80px;
+ max-height:80x;
+ min-width:80px;
+ min-height:80px;
+
+
+}
+QPushButton:hover
+{
+ background-color:  #c2c2c2;
+}
+
+ 
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="removeLabel">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>380</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(104, 104, 104);
+</string>
+    </property>
+    <property name="text">
+     <string>REMOVE USER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>searchLabel</zorder>
+   <zorder>searchUser</zorder>
+   <zorder>addUser</zorder>
+   <zorder>addLabel</zorder>
+   <zorder>editUser</zorder>
+   <zorder>editLabel</zorder>
+   <zorder>removeUser</zorder>
+   <zorder>removeLabel</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

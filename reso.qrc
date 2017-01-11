@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>login.png</file>
+        <file>login_back.png</file>
+        <file>mitsulogo.png</file>
+        <file>mitsu_back.jpg</file>
+        <file>hr_depart.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>icons/add_user.png</file>
+        <file>icons/edit_user.png</file>
+        <file>icons/search.png</file>
+        <file>icons/remove_user.png</file>
+        <file>icons/mitsu_small.png</file>
+    </qresource>
+    <qresource prefix="/res">
+        <file>res/tab_bg.png</file>
+        <file>res/hr_bg.png</file>
+        <file>res/login_form.png</file>
+    </qresource>
+</RCC>
