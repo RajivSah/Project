@@ -5,6 +5,10 @@
         <file>mitsulogo.png</file>
         <file>mitsu_back.jpg</file>
         <file>hr_depart.png</file>
+        <file>icons/Add User Male-96.png</file>
+        <file>icons/Find User Male-96.png</file>
+        <file>icons/Home-96 (1).png</file>
+        <file>icons/Remove User Male-96.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/add_user.png</file>

@@ -7,13 +7,43 @@
 #include <QSqlQuery>
 #include <QCalendarWidget>
 #include <QButtonGroup>
+#include <QGraphicsDropShadowEffect>
+#include <QSqlQueryModel>
+#include <QSqlError>
 
+DBCONNECTION connector;
 hrwindow::hrwindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::hrwindow)
 {
     //
     ui->setupUi(this);
+
+    setInitails();
+
+
+
+
+/*    if(connector.connect())
+    {
+        qDebug() << "Database Connected";
+    }
+    else
+        qDebug() << "Database Error";
+*/
+//    connect(ui->searchButton, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
+//    connect(ui->searchButton_2, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
+//    connect(ui->searchButton_3, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
+
+
+
+
+
+}
+void hrwindow::setInitails()
+{
+    ui->tableView->setAlternatingRowColors(true);
+
     setCentralWidget(ui->tabWidget);
      setFixedSize(1024, 640);
     // Makes Tab Transparent
@@ -21,26 +51,26 @@ hrwindow::hrwindow(QWidget *parent) :
     //Used in Add New Employee
     ui->groupBox->setFixedSize(905, 470);
     //
-
     QButtonGroup *statRadio=new QButtonGroup();
     statRadio->addButton(ui->radioButton_3);
     statRadio->addButton(ui->radioButton_4);
 
 
-    DBCONNECTION connector;
 
-    if(connector.connect())
-    {
-        qDebug() << "Database Connected";
-    }
-    else
-        qDebug() << "Database Error";
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
 
-    connect(ui->searchButton, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-    connect(ui->searchButton_2, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-    connect(ui->searchButton_3, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
+    effect->setBlurRadius(5);
+    effect->setOffset(5,5);
+    effect->setColor(Qt::gray);
+    ui->groupBox->setGraphicsEffect(effect);
+    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
 
-    ui->tableView->setAlternatingRowColors(true);
+    effect2->setBlurRadius(5);
+    effect2->setOffset(5,5);
+    effect2->setColor(Qt::gray);
+
+    ui->groupBox_2->setGraphicsEffect(effect2);
+
 
 
 }
@@ -188,3 +218,25 @@ void hrwindow::on_AddButton_clicked()
 }
 
 
+
+void hrwindow::on_searchButton_textChanged(const QString &arg1)
+{
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+    QSqlQueryModel *model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM employee_table WHERE Username LIKE '%"+arg1+"%'");
+    ui->tableView->setModel(model);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    connector.db.close();
+    }
+  }
+
+void hrwindow::on_tableView_clicked(const QModelIndex &index)
+{
+
+}
