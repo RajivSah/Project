@@ -2,6 +2,7 @@
 #define HRWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlQueryModel>
 
 namespace Ui {
 class hrwindow;
@@ -26,6 +27,7 @@ public:
      void edit_user_Tab_select();
      void remove_user_Tab_select();
      void setInitails();
+     void setInputValidator();
 
 private slots:
      void on_ClearButton_clicked();
@@ -37,9 +39,11 @@ private slots:
      void on_searchButton_textChanged(const QString &arg1);
 
      void on_tableView_clicked(const QModelIndex &index);
+     void detailSearchResult(int);
 
 private:
     Ui::hrwindow *ui;
+    QSqlQueryModel *model=new QSqlQueryModel();
 };
 
 

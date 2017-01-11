@@ -20,6 +20,7 @@ hrwindow::hrwindow(QWidget *parent) :
     ui->setupUi(this);
 
     setInitails();
+    setInputValidator();
 
 
 
@@ -43,6 +44,8 @@ hrwindow::hrwindow(QWidget *parent) :
 void hrwindow::setInitails()
 {
     ui->tableView->setAlternatingRowColors(true);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 
     setCentralWidget(ui->tabWidget);
      setFixedSize(1024, 640);
@@ -52,8 +55,8 @@ void hrwindow::setInitails()
     ui->groupBox->setFixedSize(905, 470);
     //
     QButtonGroup *statRadio=new QButtonGroup();
-    statRadio->addButton(ui->radioButton_3);
-    statRadio->addButton(ui->radioButton_4);
+    statRadio->addButton(ui->activeRadio);
+    statRadio->addButton(ui->inactiveRadio);
 
 
 
@@ -70,6 +73,13 @@ void hrwindow::setInitails()
     effect2->setColor(Qt::gray);
 
     ui->groupBox_2->setGraphicsEffect(effect2);
+    QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect();
+
+    effect3->setBlurRadius(5);
+    effect3->setOffset(5,5);
+    effect3->setColor(Qt::gray);
+
+    ui->groupBox_3->setGraphicsEffect(effect3);
 
 
 
@@ -109,16 +119,16 @@ void hrwindow::on_ClearButton_clicked()
         ui->firstName->clear();
         ui->lastName->clear();
         ui->contact->clear();
-        ui->radioButton->setChecked(false);
-        ui->radioButton_2->setChecked(false);
+        ui->maleRadio->setChecked(false);
+        ui->femaleRadio->setChecked(false);
         ui->address1Edit->clear();
         ui->address2Edit->clear();
 		ui->address3Edit->clear();
 		ui->salaryEdit->clear();
 		ui->qualificationInput->clear();
 		ui->DOBEdit->clear();
-        ui->radioButton_3->setChecked(false);
-        ui->radioButton_4->setChecked(false);
+        ui->activeRadio->setChecked(false);
+        ui->inactiveRadio->setChecked(false);
         ui->ClearButton->clearFocus();
 	
 }
@@ -148,72 +158,54 @@ void hrwindow::searchFunction(QString keyword)
 
 void hrwindow::on_AddButton_clicked()
 {
-    QString name=ui->firstName->text();
-    QString gender;
-
-    name.append(" ");
-    name.append(ui->lastName->text());
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connect";
+                  return;
+    }
     QSqlQuery *insertQuery=new QSqlQuery();
-    insertQuery->prepare("INSERT INTO EMPLOYEE_TABLE (`Name`, `Contact`, `Gender`, `Address`, `Salary`, `Post`, `Qualification`, `DOB`, `Status`)" "VALUES (:name , :contact, :gender, :address, :salary, :post, :qualification, :dob, :status)");
-
-    if(ui->radioButton->isChecked())
-        gender=ui->radioButton->text();
-
-    else
-        gender=ui->radioButton_2->text();
-
-
-
-    insertQuery->bindValue(":name", name);
-    insertQuery->bindValue(":contact", ui->contact->text());
-
-    if(ui->radioButton->isChecked())
-        insertQuery->bindValue(":gender",ui->radioButton->text());
+    insertQuery->prepare("INSERT INTO employeetable (`firstName`,`lastName` ,`contact`, `gender`, `addressArea` ,`addressCity`, `addressDistrict`, `salary` ,`post`, `dob` ,`status`, `quallification` )" "VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?"
+                         ")");
+    insertQuery->addBindValue(ui->firstName->text());
+    insertQuery->addBindValue(ui->lastName->text());
+    insertQuery->addBindValue(ui->contact->text().toInt());
+    int gen;
+    if(ui->maleRadio->isChecked())
+        gen= 1;
 
     else
-        insertQuery->bindValue(":gender", ui->radioButton_2->text());
+        gen=0;
 
-    QString address=ui->address1Edit->text();
-    address.append(", ");
-    address.append(ui->address2Edit->text());
-    address.append(", ");
-    address.append(ui->address3Edit->text());
-    insertQuery->bindValue(":address", address);
-
-    insertQuery->bindValue(":salary", ui->salaryEdit->text());
-    insertQuery->bindValue(":post", ui->comboBox->currentText());
-    insertQuery->bindValue(":qualification", ui->qualificationInput->toPlainText());
-    insertQuery->bindValue(":dob", ui->DOBEdit->text());
-
-    if(ui->radioButton->isChecked())
-        insertQuery->bindValue(":status",ui->radioButton_3->text());
+    insertQuery->addBindValue(gen);
+    insertQuery->addBindValue(ui->address1Edit->text());
+    insertQuery->addBindValue(ui->address2Edit->text());
+    insertQuery->addBindValue(ui->address3Edit->text());
+    insertQuery->addBindValue(ui->salaryEdit->text().toInt());
+    insertQuery->addBindValue(ui->comboBox->currentText());
+    insertQuery->addBindValue(ui->DOBEdit->text());
+    int status;
+    if(ui->activeRadio->isChecked())
+        status=1;
 
     else
-        insertQuery->bindValue(":status", ui->radioButton_4->text());
+       status =0;
+
+    insertQuery->addBindValue(status);
+    insertQuery->addBindValue(ui->qualificationInput->toPlainText());
 
     if(insertQuery->exec())
     {
         qDebug() << "Sucessfully Added to Database. ";
         ui->statusbar->showMessage("The Data has been added Successfully. ", 4000);
+        connector.db.close();
+        on_ClearButton_clicked();
 
     }
 
     else
-        qDebug() << "Error";
+       { qDebug() << "Error"<<connector.db.lastError();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 }
 
@@ -228,15 +220,71 @@ void hrwindow::on_searchButton_textChanged(const QString &arg1)
     }
     else
     {
-    QSqlQueryModel *model=new QSqlQueryModel();
-    model->setQuery("SELECT * FROM employee_table WHERE Username LIKE '%"+arg1+"%'");
+
+    model->setQuery("SELECT id,firstname,lastname,post FROM employeetable WHERE firstname LIKE '%"+arg1+"%'");
     ui->tableView->setModel(model);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->hideColumn(0);
     connector.db.close();
     }
   }
 
 void hrwindow::on_tableView_clicked(const QModelIndex &index)
 {
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        QModelIndex index1=model->index(index.row(),0);
+        int searchKey= index1.data().toInt();
+        qDebug()<<searchKey;
+        detailSearchResult(searchKey);
+
+
+        connector.db.close();
+    }
+
+
+
+}
+void hrwindow::detailSearchResult(int searchKey)
+{
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        QSqlQuery query;
+        query.prepare("SELECT * FROM employeetable WHERE ID= ?");
+        query.addBindValue(searchKey);
+        if(query.exec())
+        {
+            query.next();
+            ui->firstNameSearch->setText(query.value(1).toString());
+
+            ui->statusbar->showMessage("seach sucessfull");
+        }
+        else
+        {
+            qDebug()<<"did not execute query";
+        }
+
+        connector.db.close();
+    }
+}
+
+void hrwindow::setInputValidator()
+{
+    QRegExp regexp("[0-9]{0,10}");
+    ui->contact->setValidator(new QRegExpValidator(regexp));
+    QRegExp regexp1("[a-z A-Z]{0,30}");
+    ui->firstName->setValidator(new QRegExpValidator(regexp1));
+    ui->lastName->setValidator(new QRegExpValidator(regexp1));
+    ui->address2Edit->setValidator(new QRegExpValidator(regexp1));
+    ui->address3Edit->setValidator(new QRegExpValidator(regexp1));
 
 }
