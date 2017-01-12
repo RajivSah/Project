@@ -28,7 +28,7 @@ public:
      void remove_user_Tab_select();
      void setInitails();
      void setInputValidator();
-
+     void setSizes();
 private slots:
      void on_ClearButton_clicked();
      void searchFunction(QString);
@@ -40,6 +40,7 @@ private slots:
 
      void on_tableView_clicked(const QModelIndex &index);
      void detailSearchResult(int);
+
 
 private:
     Ui::hrwindow *ui;

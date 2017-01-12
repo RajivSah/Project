@@ -10,6 +10,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QSqlQueryModel>
 #include <QSqlError>
+#include <QDesktopWidget>
 
 DBCONNECTION connector;
 hrwindow::hrwindow(QWidget *parent) :
@@ -21,7 +22,6 @@ hrwindow::hrwindow(QWidget *parent) :
 
     setInitails();
     setInputValidator();
-
 
 
 
@@ -43,17 +43,14 @@ hrwindow::hrwindow(QWidget *parent) :
 }
 void hrwindow::setInitails()
 {
+    setSizes();
     ui->tableView->setAlternatingRowColors(true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
     setCentralWidget(ui->tabWidget);
-     setFixedSize(1024, 640);
-    // Makes Tab Transparent
-    ui->tabWidget->setDocumentMode(true);
-    //Used in Add New Employee
-    ui->groupBox->setFixedSize(905, 470);
-    //
+
+
     QButtonGroup *statRadio=new QButtonGroup();
     statRadio->addButton(ui->activeRadio);
     statRadio->addButton(ui->inactiveRadio);
@@ -66,13 +63,15 @@ void hrwindow::setInitails()
     effect->setOffset(5,5);
     effect->setColor(Qt::gray);
     ui->groupBox->setGraphicsEffect(effect);
-    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
+
+    QGraphicsDropShadowEffect *effect2= new QGraphicsDropShadowEffect();
 
     effect2->setBlurRadius(5);
     effect2->setOffset(5,5);
     effect2->setColor(Qt::gray);
 
     ui->groupBox_2->setGraphicsEffect(effect2);
+
     QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect();
 
     effect3->setBlurRadius(5);
@@ -81,6 +80,47 @@ void hrwindow::setInitails()
 
     ui->groupBox_3->setGraphicsEffect(effect3);
 
+    QGraphicsDropShadowEffect *effect4 = new QGraphicsDropShadowEffect();
+
+    effect4->setBlurRadius(5);
+    effect4->setOffset(5,5);
+    effect4->setColor(Qt::gray);
+
+    ui->groupBox_4->setGraphicsEffect(effect4);
+
+    QGraphicsDropShadowEffect *effect5 = new QGraphicsDropShadowEffect();
+
+    effect5->setBlurRadius(5);
+    effect5->setOffset(5,5);
+    effect5->setColor(Qt::gray);
+
+    ui->tableView->setGraphicsEffect(effect5);
+
+    QGraphicsDropShadowEffect *effect6 = new QGraphicsDropShadowEffect();
+
+    effect6->setBlurRadius(5);
+    effect6->setOffset(5,5);
+    effect6->setColor(Qt::gray);
+
+    ui->tableView_2->setGraphicsEffect(effect6);
+
+    QGraphicsDropShadowEffect *effect7 = new QGraphicsDropShadowEffect();
+
+    effect7->setBlurRadius(5);
+    effect7->setOffset(5,5);
+    effect7->setColor(Qt::gray);
+
+    ui->tableView_3->setGraphicsEffect(effect7);
+
+
+
+}
+void hrwindow::setSizes()
+{
+    QRect screenSize =QApplication::desktop()->availableGeometry();
+
+    qDebug()<<screenSize;
+    this->setFixedSize(screenSize.width()+10,screenSize.height()*0.96);
 
 
 }
@@ -264,7 +304,7 @@ void hrwindow::detailSearchResult(int searchKey)
         if(query.exec())
         {
             query.next();
-            ui->firstNameSearch->setText(query.value(1).toString());
+//            ui->firstNameSearch->setText(query.value(1).toString());
 
             ui->statusbar->showMessage("seach sucessfull");
         }
