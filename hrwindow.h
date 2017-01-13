@@ -46,9 +46,23 @@ private slots:
 
      void on_tableView_2_clicked(const QModelIndex &index);
 
+     void on_AddButton_5_clicked();
+
+     void on_searchButton_3_textChanged(const QString &arg1);
+
+     void on_tableView_3_clicked(const QModelIndex &index);
+
+     void on_removeButton_clicked();
+
 private:
     Ui::hrwindow *ui;
-    QSqlQueryModel *model=new QSqlQueryModel();
+    QSqlQueryModel *model1=new QSqlQueryModel();
+    QSqlQueryModel *model2=new QSqlQueryModel();
+    QSqlQueryModel *model3=new QSqlQueryModel();
+
+    int searchKey1;
+    int searchKey2;
+    int searchKey3;
 };
 
 

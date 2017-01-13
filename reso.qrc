@@ -9,6 +9,7 @@
         <file>icons/Edit User Male-100.png</file>
         <file>icons/Find User Male-100.png</file>
         <file>icons/Remove User Male-100.png</file>
+        <file>icons/Search-50.png</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/add_user.png</file>

@@ -1423,7 +1423,7 @@ background-color: #FD5E64;
            <x>30</x>
            <y>30</y>
            <width>731</width>
-           <height>426</height>
+           <height>387</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_29">
@@ -1887,46 +1887,15 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="activeRadioSearch">
+                 <widget class="QLineEdit" name="statusSearch">
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>100</width>
-                    <height>0</height>
+                    <width>200</width>
+                    <height>38</height>
                    </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Active</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="inactiveRadioSearch">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Inactive</string>
                   </property>
                  </widget>
                 </item>
@@ -2304,45 +2273,6 @@ color: rgb(0, 0, 0);
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QPushButton" name="ClearButton_3">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>38</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>12</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>Clear All</string>
-                </property>
-                <property name="checkable">
-                 <bool>false</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <property name="autoDefault">
-                 <bool>true</bool>
-                </property>
-                <property name="default">
-                 <bool>true</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
             <item>
@@ -2359,45 +2289,6 @@ color: rgb(0, 0, 0);
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="AddButton_3">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>38</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>12</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>Add User</string>
-                </property>
-                <property name="checkable">
-                 <bool>false</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <property name="autoDefault">
-                 <bool>true</bool>
-                </property>
-                <property name="default">
-                 <bool>true</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>
@@ -2554,7 +2445,7 @@ border-right: 2px solid #e3e3e3;
          <string>Search</string>
         </property>
         <property name="clearButtonEnabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
        <widget class="QTableView" name="tableView_2">
@@ -2688,8 +2579,8 @@ background-color: #FD5E64;
           <rect>
            <x>30</x>
            <y>30</y>
-           <width>760</width>
-           <height>475</height>
+           <width>731</width>
+           <height>421</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_35">
@@ -3120,14 +3011,6 @@ color: rgb(0, 0, 0);
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_50">
-                <item>
-                 <widget class="QGroupBox" name="groupBox_6">
-                  <property name="title">
-                   <string/>
-                  </property>
-                  <layout class="QGridLayout" name="gridLayout_4"/>
-                 </widget>
-                </item>
                 <item>
                  <widget class="QLabel" name="statLabel_5">
                   <property name="minimumSize">
@@ -3602,45 +3485,6 @@ color: rgb(0, 0, 0);
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QPushButton" name="ClearButton_5">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>38</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>12</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>Cancel</string>
-                </property>
-                <property name="checkable">
-                 <bool>false</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <property name="autoDefault">
-                 <bool>true</bool>
-                </property>
-                <property name="default">
-                 <bool>true</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
             <item>
@@ -3842,7 +3686,7 @@ color: rgb(0, 0, 0);
 
 }
 
-QPushButton#ClearButton_7
+QPushButton#removeButton
 {
     
 	background-color: #ED1c24;
@@ -3851,12 +3695,12 @@ QPushButton#ClearButton_7
 
 	border-radius: 5px;
 }
-QPushButton#ClearButton_7:focus
+QPushButton#removeButton:focus
 {
 background-color: #FD5E64;
 
 }
-QPushButton#ClearButton_7:hover
+QPushButton#removeButton:hover
 {
 background-color: #FD5E64;
 
@@ -3876,504 +3720,24 @@ background-color: #FD5E64;
            <x>30</x>
            <y>30</y>
            <width>731</width>
-           <height>426</height>
+           <height>421</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_38">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_39">
-            <item row="0" column="0">
-             <layout class="QVBoxLayout" name="verticalLayout_21">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_58">
-                <item>
-                 <widget class="QLabel" name="firstNameLabel_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>First Name</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_74">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>35</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="firstName_6">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                    <kerning>false</kerning>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true"/>
-                  </property>
-                  <property name="inputMask">
-                   <string/>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                  <property name="clearButtonEnabled">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_59">
-                <item>
-                 <widget class="QLabel" name="phoneLabel_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Contact No</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_75">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>35</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="contact_6">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                    <kerning>false</kerning>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit#userName
-{
-border-bottom: 2px solid;
-border-top: 0px;
-border-color: rgb(172, 172, 172);
-padding: 5px;
-color: rgb(0, 0, 0);
-
-}</string>
-                  </property>
-                  <property name="inputMask">
-                   <string/>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                  <property name="clearButtonEnabled">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QGridLayout" name="gridLayout_40">
-                <item row="0" column="0" alignment="Qt::AlignTop">
-                 <widget class="QLabel" name="addressLabel_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Address</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <spacer name="horizontalSpacer_76">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>35</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="2">
-                 <layout class="QVBoxLayout" name="verticalLayout_22">
-                  <item>
-                   <widget class="QLineEdit" name="address1Edit_6">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>200</width>
-                      <height>38</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Calibri</family>
-                      <pointsize>12</pointsize>
-                      <weight>50</weight>
-                      <bold>false</bold>
-                      <kerning>false</kerning>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit#userName
-{
-border-bottom: 2px solid;
-border-top: 0px;
-border-color: rgb(172, 172, 172);
-padding: 5px;
-color: rgb(0, 0, 0);
-
-}</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="placeholderText">
-                     <string>Area</string>
-                    </property>
-                    <property name="clearButtonEnabled">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_15">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="address2Edit_6">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>200</width>
-                      <height>38</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Calibri</family>
-                      <pointsize>12</pointsize>
-                      <weight>50</weight>
-                      <bold>false</bold>
-                      <kerning>false</kerning>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit#userName
-{
-border-bottom: 2px solid;
-border-top: 0px;
-border-color: rgb(172, 172, 172);
-padding: 5px;
-color: rgb(0, 0, 0);
-
-}</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="placeholderText">
-                     <string>City</string>
-                    </property>
-                    <property name="clearButtonEnabled">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_16">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="address3Edit_6">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>200</width>
-                      <height>38</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Calibri</family>
-                      <pointsize>12</pointsize>
-                      <weight>50</weight>
-                      <bold>false</bold>
-                      <kerning>false</kerning>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit#userName
-{
-border-bottom: 2px solid;
-border-top: 0px;
-border-color: rgb(172, 172, 172);
-padding: 5px;
-color: rgb(0, 0, 0);
-
-}</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="placeholderText">
-                     <string>District</string>
-                    </property>
-                    <property name="clearButtonEnabled">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_60">
-                <item>
-                 <widget class="QLabel" name="salaryLabel_11">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Salary</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_77">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>35</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="salaryEdit_6">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                    <kerning>false</kerning>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit#userName
-{
-border-bottom: 2px solid;
-border-top: 0px;
-border-color: rgb(172, 172, 172);
-padding: 5px;
-color: rgb(0, 0, 0);
-
-}</string>
-                  </property>
-                  <property name="inputMethodHints">
-                   <set>Qt::ImhDigitsOnly</set>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                  <property name="clearButtonEnabled">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_61">
-                <item>
-                 <widget class="QLabel" name="statLabel_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>38</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Status</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_78">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>35</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="activeRadio_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Active</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="inactiveRadio_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Inactive</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
+            <item row="0" column="1">
+             <spacer name="horizontalSpacer_84">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
             <item row="0" column="2">
              <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -4406,7 +3770,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lastName_6">
+                 <widget class="QLineEdit" name="lastNameRemove">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -4481,42 +3845,58 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="maleRadio_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
+                 <widget class="QGroupBox" name="groupBox_6">
+                  <property name="title">
+                   <string/>
                   </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>MALE</string>
-                  </property>
+                  <layout class="QGridLayout" name="gridLayout_4">
+                   <item row="0" column="0">
+                    <layout class="QHBoxLayout" name="horizontalLayout_15">
+                     <item>
+                      <widget class="QRadioButton" name="maleRadioRemove">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>MALE</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="femaleRadioRemove">
+                       <property name="minimumSize">
+                        <size>
+                         <width>80</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>FEMALE</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="femaleRadio_6">
-                  <property name="minimumSize">
-                   <size>
-                    <width>80</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>FEMALE</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_14"/>
                 </item>
                </layout>
               </item>
@@ -4549,7 +3929,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_6">
+                 <widget class="QComboBox" name="postremove">
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -4620,7 +4000,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="DOBEdit_6">
+                 <widget class="QLineEdit" name="DOBremove">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -4701,7 +4081,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QTextEdit" name="qualificationInput_6">
+                 <widget class="QTextEdit" name="qualificationInputRemove">
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -4729,18 +4109,498 @@ color: rgb(0, 0, 0);
               </item>
              </layout>
             </item>
-            <item row="0" column="1">
-             <spacer name="horizontalSpacer_84">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
+            <item row="0" column="0">
+             <layout class="QVBoxLayout" name="verticalLayout_21">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_58">
+                <item>
+                 <widget class="QLabel" name="firstNameLabel_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>First Name</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_74">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>35</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="firstNameRemove">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                    <kerning>false</kerning>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="inputMask">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="placeholderText">
+                   <string/>
+                  </property>
+                  <property name="clearButtonEnabled">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_59">
+                <item>
+                 <widget class="QLabel" name="phoneLabel_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Contact No</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_75">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>35</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="contactRemove">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                    <kerning>false</kerning>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit#userName
+{
+border-bottom: 2px solid;
+border-top: 0px;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+color: rgb(0, 0, 0);
+
+}</string>
+                  </property>
+                  <property name="inputMask">
+                   <string/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="placeholderText">
+                   <string/>
+                  </property>
+                  <property name="clearButtonEnabled">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_40">
+                <item row="0" column="0" alignment="Qt::AlignTop">
+                 <widget class="QLabel" name="addressLabel_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Address</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <spacer name="horizontalSpacer_76">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>35</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="2">
+                 <layout class="QVBoxLayout" name="verticalLayout_22">
+                  <item>
+                   <widget class="QLineEdit" name="addressAreaRemove">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>38</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>12</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                      <kerning>false</kerning>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit#userName
+{
+border-bottom: 2px solid;
+border-top: 0px;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+color: rgb(0, 0, 0);
+
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Area</string>
+                    </property>
+                    <property name="clearButtonEnabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_15">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="addressCityRemove">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>38</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>12</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                      <kerning>false</kerning>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit#userName
+{
+border-bottom: 2px solid;
+border-top: 0px;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+color: rgb(0, 0, 0);
+
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    </property>
+                    <property name="placeholderText">
+                     <string>City</string>
+                    </property>
+                    <property name="clearButtonEnabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_16">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="addressDistrictremove">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>38</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>12</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                      <kerning>false</kerning>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit#userName
+{
+border-bottom: 2px solid;
+border-top: 0px;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+color: rgb(0, 0, 0);
+
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    </property>
+                    <property name="placeholderText">
+                     <string>District</string>
+                    </property>
+                    <property name="clearButtonEnabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_60">
+                <item>
+                 <widget class="QLabel" name="salaryLabel_11">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Salary</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_77">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>35</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="salaryRemove">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                    <kerning>false</kerning>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit#userName
+{
+border-bottom: 2px solid;
+border-top: 0px;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+color: rgb(0, 0, 0);
+
+}</string>
+                  </property>
+                  <property name="inputMethodHints">
+                   <set>Qt::ImhDigitsOnly</set>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="placeholderText">
+                   <string/>
+                  </property>
+                  <property name="clearButtonEnabled">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_61">
+                <item>
+                 <widget class="QLabel" name="statLabel_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>38</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Status</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_78">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>35</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="activeRadioremove">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Active</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="inactiveRadioRemove">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Inactive</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -4764,46 +4624,6 @@ color: rgb(0, 0, 0);
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QPushButton" name="ClearButton_6">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>38</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>12</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">border:0px;
-background-color: rgb(255, 255, 255);</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="checkable">
-                 <bool>false</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <property name="autoDefault">
-                 <bool>true</bool>
-                </property>
-                <property name="default">
-                 <bool>true</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
             <item>
@@ -4822,7 +4642,7 @@ background-color: rgb(255, 255, 255);</string>
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="ClearButton_7">
+               <widget class="QPushButton" name="removeButton">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
