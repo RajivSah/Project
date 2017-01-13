@@ -26,16 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     hrwindow.cpp \
-    hr_splash.cpp
+    hr_splash.cpp \
+    sales.cpp
 
 HEADERS  += mainwindow.h \
     hrwindow.h \
     hr_splash.h \
-    dbconnection.h
+    dbconnection.h \
+    sales.h
 
 FORMS    += mainwindow.ui \
     hrwindow.ui \
-    hr_splash.ui
+    hr_splash.ui \
+    sales.ui
 
 RESOURCES += \
     reso.qrc
