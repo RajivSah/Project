@@ -23,6 +23,10 @@
    <string notr="true">QMainWindow#hrwindow
 {
 background-color: rgb(234, 234, 234);
+}
+QTableView
+{
+border :0px;
 }</string>
   </property>
   <property name="documentMode">
@@ -88,7 +92,7 @@ QTabBar::tab:!selected:hover
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -1462,9 +1466,9 @@ background-color: #FD5E64;
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="firstName_3">
+                 <widget class="QLineEdit" name="firstNameSearch">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
@@ -1532,9 +1536,9 @@ background-color: #FD5E64;
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="contact_3">
+                 <widget class="QLineEdit" name="contactSearch">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
@@ -1612,9 +1616,9 @@ color: rgb(0, 0, 0);
                 <item row="0" column="2">
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
-                   <widget class="QLineEdit" name="address1Edit_3">
+                   <widget class="QLineEdit" name="addressAreaSearch">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="minimumSize">
                      <size>
@@ -1670,9 +1674,9 @@ color: rgb(0, 0, 0);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="address2Edit_3">
+                   <widget class="QLineEdit" name="addresscitySearch">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="minimumSize">
                      <size>
@@ -1728,9 +1732,9 @@ color: rgb(0, 0, 0);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="address3Edit_3">
+                   <widget class="QLineEdit" name="addressDistrictSearch">
                     <property name="enabled">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="minimumSize">
                      <size>
@@ -1805,9 +1809,9 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="salaryEdit_3">
+                 <widget class="QLineEdit" name="salarySearch">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
@@ -1883,7 +1887,10 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="activeRadio_3">
+                 <widget class="QRadioButton" name="activeRadioSearch">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -1902,7 +1909,10 @@ color: rgb(0, 0, 0);
                  </widget>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="inactiveRadio_3">
+                 <widget class="QRadioButton" name="inactiveRadioSearch">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>100</width>
@@ -1955,9 +1965,9 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lastName_3">
+                 <widget class="QLineEdit" name="lastNameSearch">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
@@ -2030,40 +2040,15 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="maleRadio_3">
+                 <widget class="QLineEdit" name="genderLineEdit">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
-                    <width>100</width>
-                    <height>0</height>
+                    <width>200</width>
+                    <height>38</height>
                    </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>MALE</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="femaleRadio_3">
-                  <property name="minimumSize">
-                   <size>
-                    <width>80</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>FEMALE</string>
                   </property>
                  </widget>
                 </item>
@@ -2098,7 +2083,10 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_3">
+                 <widget class="QComboBox" name="postSearch">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -2169,9 +2157,9 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="DOBEdit_3">
+                 <widget class="QLineEdit" name="DOBeditSearch">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="minimumSize">
                    <size>
@@ -2250,7 +2238,10 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QTextEdit" name="qualificationInput_3">
+                 <widget class="QTextEdit" name="qualificationSeach">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -2697,8 +2688,8 @@ background-color: #FD5E64;
           <rect>
            <x>30</x>
            <y>30</y>
-           <width>731</width>
-           <height>426</height>
+           <width>760</width>
+           <height>475</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_35">
@@ -2735,7 +2726,7 @@ background-color: #FD5E64;
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="firstName_5">
+                 <widget class="QLineEdit" name="firstNameEdit">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -2805,7 +2796,7 @@ background-color: #FD5E64;
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="contact_5">
+                 <widget class="QLineEdit" name="contactEdit">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -2885,7 +2876,7 @@ color: rgb(0, 0, 0);
                 <item row="0" column="2">
                  <layout class="QVBoxLayout" name="verticalLayout_18">
                   <item>
-                   <widget class="QLineEdit" name="address1Edit_5">
+                   <widget class="QLineEdit" name="addressAreaEdit">
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
@@ -2943,7 +2934,7 @@ color: rgb(0, 0, 0);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="address2Edit_5">
+                   <widget class="QLineEdit" name="addressCityedit">
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
@@ -3001,7 +2992,7 @@ color: rgb(0, 0, 0);
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="address3Edit_5">
+                   <widget class="QLineEdit" name="addressDistrictEdit">
                     <property name="enabled">
                      <bool>true</bool>
                     </property>
@@ -3078,7 +3069,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="salaryEdit_5">
+                 <widget class="QLineEdit" name="salarytestEdit">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -3130,6 +3121,14 @@ color: rgb(0, 0, 0);
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_50">
                 <item>
+                 <widget class="QGroupBox" name="groupBox_6">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_4"/>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="statLabel_5">
                   <property name="minimumSize">
                    <size>
@@ -3156,42 +3155,46 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="activeRadio_5">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Active</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="inactiveRadio_5">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Inactive</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_13">
+                  <item>
+                   <widget class="QRadioButton" name="activeRadioEdit">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Active</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="inactiveRadioEdit">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Calibri</family>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Inactive</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -3228,7 +3231,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lastName_5">
+                 <widget class="QLineEdit" name="lastNameEdit">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -3303,41 +3306,54 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QRadioButton" name="maleRadio_5">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
+                 <widget class="QGroupBox" name="groupBox_5">
+                  <property name="title">
+                   <string/>
                   </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>MALE</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="femaleRadio_5">
-                  <property name="minimumSize">
-                   <size>
-                    <width>80</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Calibri</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>FEMALE</string>
-                  </property>
+                  <layout class="QGridLayout" name="gridLayout_3">
+                   <item row="0" column="0">
+                    <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <item>
+                      <widget class="QRadioButton" name="maleRadioEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>MALE</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="femaleRadioEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>80</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Calibri</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>FEMALE</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                </layout>
@@ -3371,7 +3387,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_5">
+                 <widget class="QComboBox" name="postEdit">
                   <property name="minimumSize">
                    <size>
                     <width>200</width>
@@ -3442,7 +3458,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="DOBEdit_5">
+                 <widget class="QLineEdit" name="DOBEdit_Edit">
                   <property name="enabled">
                    <bool>true</bool>
                   </property>
@@ -3523,7 +3539,7 @@ color: rgb(0, 0, 0);
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QTextEdit" name="qualificationInput_5">
+                 <widget class="QTextEdit" name="qualificationInputEdit">
                   <property name="minimumSize">
                    <size>
                     <width>200</width>

@@ -31,7 +31,7 @@ public:
      void setSizes();
 private slots:
      void on_ClearButton_clicked();
-     void searchFunction(QString);
+
 
      void on_AddButton_clicked();
 
@@ -41,6 +41,10 @@ private slots:
      void on_tableView_clicked(const QModelIndex &index);
      void detailSearchResult(int);
 
+
+     void on_searchButton_2_textChanged(const QString &arg1);
+
+     void on_tableView_2_clicked(const QModelIndex &index);
 
 private:
     Ui::hrwindow *ui;

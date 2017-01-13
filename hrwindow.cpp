@@ -11,6 +11,7 @@
 #include <QSqlQueryModel>
 #include <QSqlError>
 #include <QDesktopWidget>
+#include <QStringList>
 
 DBCONNECTION connector;
 hrwindow::hrwindow(QWidget *parent) :
@@ -47,7 +48,6 @@ void hrwindow::setInitails()
     ui->tableView->setAlternatingRowColors(true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-
     setCentralWidget(ui->tabWidget);
 
 
@@ -83,7 +83,7 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect4 = new QGraphicsDropShadowEffect();
 
     effect4->setBlurRadius(5);
-    effect4->setOffset(5,5);
+    effect4->setOffset(0,0);
     effect4->setColor(Qt::gray);
 
     ui->groupBox_4->setGraphicsEffect(effect4);
@@ -173,25 +173,7 @@ void hrwindow::on_ClearButton_clicked()
 	
 }
 
-void hrwindow::searchFunction(QString keyword)
-{
-    qDebug() << keyword;
-    QSqlQueryModel *qmodel=new QSqlQueryModel();
 
-
-    qmodel->setQuery("SELECT *from employee_table where NAME like '%"+keyword+"%'");
-    ui->tableView->setModel(qmodel);
-
-
-
-
-
-
-
-
-
-
-}
 
 
 
@@ -204,11 +186,12 @@ void hrwindow::on_AddButton_clicked()
                   return;
     }
     QSqlQuery *insertQuery=new QSqlQuery();
-    insertQuery->prepare("INSERT INTO employeetable (`firstName`,`lastName` ,`contact`, `gender`, `addressArea` ,`addressCity`, `addressDistrict`, `salary` ,`post`, `dob` ,`status`, `quallification` )" "VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?"
+    insertQuery->prepare("INSERT INTO employeetable (`name` ,`contact`, `gender`, `addressArea` ,`addressCity`, `addressDistrict`, `salary` ,`post`, `dob` ,`status`, `quallification` )" "VALUES ( ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?"
                          ")");
-    insertQuery->addBindValue(ui->firstName->text());
-    insertQuery->addBindValue(ui->lastName->text());
-    insertQuery->addBindValue(ui->contact->text().toInt());
+    insertQuery->addBindValue(ui->firstName->text()+" "+ui->lastName->text());
+
+    insertQuery->addBindValue(ui->contact->text());
+    qDebug()<<ui->contact->text();
     int gen;
     if(ui->maleRadio->isChecked())
         gen= 1;
@@ -261,9 +244,14 @@ void hrwindow::on_searchButton_textChanged(const QString &arg1)
     else
     {
 
-    model->setQuery("SELECT id,firstname,lastname,post FROM employeetable WHERE firstname LIKE '%"+arg1+"%'");
+    model->setQuery("SELECT id,Name,post,addressCity FROM employeetable WHERE Name LIKE '%"+arg1+"%' OR addressCity LIKE '%"+arg1+"%' OR post LIKE '%"+arg1+"%' OR addressArea LIKE '%"+arg1+"%'" );
     ui->tableView->setModel(model);
     ui->tableView->hideColumn(0);
+    ui->tableView->setColumnWidth(1,ui->tableView->width()/3);
+    ui->tableView->setColumnWidth(2,ui->tableView->width()/3);
+    ui->tableView->setColumnWidth(3,ui->tableView->width()/3);
+    ui->tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     connector.db.close();
     }
   }
@@ -277,7 +265,7 @@ void hrwindow::on_tableView_clicked(const QModelIndex &index)
     }
     else
     {
-        QModelIndex index1=model->index(index.row(),0);
+        QModelIndex index1 = model->index(index.row(),0);
         int searchKey= index1.data().toInt();
         qDebug()<<searchKey;
         detailSearchResult(searchKey);
@@ -303,8 +291,34 @@ void hrwindow::detailSearchResult(int searchKey)
         query.addBindValue(searchKey);
         if(query.exec())
         {
+
             query.next();
-//            ui->firstNameSearch->setText(query.value(1).toString());
+            QStringList list = query.value(1).toString().split(QRegExp("\\s+"), QString::SkipEmptyParts);
+            ui->firstNameSearch->setText(list.at(0));
+
+            ui->lastNameSearch->setText(list.at(1));
+            ui->contactSearch->setText(query.value(2).toString());
+
+
+            if(query.value(3).toBool())
+            {   qDebug()<<query.value(3).toBool();
+                ui->genderLineEdit->setText("Male");}
+            else
+                ui->genderLineEdit->setText("Female");
+
+            ui->addressAreaSearch->setText(query.value(4).toString());
+            ui->addresscitySearch->setText(query.value(5).toString());
+            ui->addressDistrictSearch->setText(query.value(6).toString());
+            ui->salaryEdit->setText(query.value(7).toString());
+            ui->postSearch->setCurrentText(query.value(8).toString());
+
+            if(query.value(9).toBool()==1)
+                ui->activeRadioSearch->setChecked(1);
+            else
+                ui->inactiveRadioSearch->setChecked(1);
+
+            ui->qualificationSeach->setText(query.value(10).toString());
+            ui->DOBeditSearch->setText(query.value(11).toString());
 
             ui->statusbar->showMessage("seach sucessfull");
         }
@@ -326,5 +340,90 @@ void hrwindow::setInputValidator()
     ui->lastName->setValidator(new QRegExpValidator(regexp1));
     ui->address2Edit->setValidator(new QRegExpValidator(regexp1));
     ui->address3Edit->setValidator(new QRegExpValidator(regexp1));
+    ui->salaryEdit->setValidator(new QRegExpValidator(regexp));
+
+
+}
+
+void hrwindow::on_searchButton_2_textChanged(const QString &arg1)
+{
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+
+    model->setQuery("SELECT id,Name,post,addressCity FROM employeetable WHERE Name LIKE '%"+arg1+"%' OR addressCity LIKE '%"+arg1+"%' OR post LIKE '%"+arg1+"%' OR addressArea LIKE '%"+arg1+"%'" );
+    ui->tableView_2->setModel(model);
+    ui->tableView_2->hideColumn(0);
+    ui->tableView_2->setColumnWidth(1,ui->tableView->width()/3);
+    ui->tableView_2->setColumnWidth(2,ui->tableView->width()/3);
+    ui->tableView_2->setColumnWidth(3,ui->tableView->width()/3);
+    ui->tableView_2->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->tableView_2->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    connector.db.close();
+    }
+}
+
+void hrwindow::on_tableView_2_clicked(const QModelIndex &index)
+{
+    if(!connector.db.open())
+    {
+        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        QModelIndex index1 = model->index(index.row(),0);
+        int searchKey= index1.data().toInt();
+        qDebug()<<searchKey;
+
+
+        QSqlQuery query;
+        query.prepare("SELECT * FROM employeetable WHERE ID= ?");
+        query.addBindValue(searchKey);
+        if(query.exec())
+        {
+
+            query.next();
+            QStringList list = query.value(1).toString().split(QRegExp("\\s+"), QString::SkipEmptyParts);
+            ui->firstNameEdit->setText(list.at(0));
+
+            ui->lastNameEdit->setText(list.at(1));
+            ui->contactEdit->setText(query.value(2).toString());
+
+
+            if(query.value(3).toBool())
+            {   qDebug()<<query.value(3).toBool();
+                ui->maleRadioEdit->setChecked(1);}
+            else
+                ui->femaleRadioEdit->setChecked(1);
+
+            ui->addressAreaEdit->setText(query.value(4).toString());
+            ui->addressCityedit->setText(query.value(5).toString());
+            ui->addressDistrictEdit->setText(query.value(6).toString());
+            ui->salaryEdit->setText(query.value(7).toString());
+            ui->postEdit->setCurrentText(query.value(8).toString());
+
+            if(query.value(9).toBool()==1)
+                ui->activeRadioEdit->setChecked(1);
+            else
+                ui->inactiveRadioEdit->setChecked(1);
+
+            ui->qualificationInputEdit->setText(query.value(10).toString());
+            ui->DOBEdit_Edit->setText(query.value(11).toString());
+        }
+        else
+        {
+            qDebug()<<"did not execute query";
+        }
+
+
+        connector.db.close();
+    }
+
 
 }
