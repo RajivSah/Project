@@ -60,14 +60,14 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
 
     effect->setBlurRadius(5);
-    effect->setOffset(5,5);
+    effect->setOffset(0,0);
     effect->setColor(Qt::gray);
     ui->groupBox->setGraphicsEffect(effect);
 
     QGraphicsDropShadowEffect *effect2= new QGraphicsDropShadowEffect();
 
     effect2->setBlurRadius(5);
-    effect2->setOffset(5,5);
+    effect2->setOffset(0,0);
     effect2->setColor(Qt::gray);
 
     ui->groupBox_2->setGraphicsEffect(effect2);
@@ -75,7 +75,7 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect();
 
     effect3->setBlurRadius(5);
-    effect3->setOffset(5,5);
+    effect3->setOffset(0,0);
     effect3->setColor(Qt::gray);
 
     ui->groupBox_3->setGraphicsEffect(effect3);
@@ -91,7 +91,7 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect5 = new QGraphicsDropShadowEffect();
 
     effect5->setBlurRadius(5);
-    effect5->setOffset(5,5);
+    effect5->setOffset(0,0);
     effect5->setColor(Qt::gray);
 
     ui->tableView->setGraphicsEffect(effect5);
@@ -99,7 +99,7 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect6 = new QGraphicsDropShadowEffect();
 
     effect6->setBlurRadius(5);
-    effect6->setOffset(5,5);
+    effect6->setOffset(00);
     effect6->setColor(Qt::gray);
 
     ui->tableView_2->setGraphicsEffect(effect6);
@@ -107,7 +107,7 @@ void hrwindow::setInitails()
     QGraphicsDropShadowEffect *effect7 = new QGraphicsDropShadowEffect();
 
     effect7->setBlurRadius(5);
-    effect7->setOffset(5,5);
+    effect7->setOffset(0,0);
     effect7->setColor(Qt::gray);
 
     ui->tableView_3->setGraphicsEffect(effect7);
@@ -120,7 +120,7 @@ void hrwindow::setSizes()
     QRect screenSize =QApplication::desktop()->availableGeometry();
 
     qDebug()<<screenSize;
-    this->setFixedSize(screenSize.width()+10,screenSize.height()*0.96);
+
 
 
 }
