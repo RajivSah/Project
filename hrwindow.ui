@@ -2445,7 +2445,7 @@ border-right: 2px solid #e3e3e3;
          <string>Search</string>
         </property>
         <property name="clearButtonEnabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QTableView" name="tableView_2">

@@ -20,7 +20,7 @@ void hr_splash::on_searchUser_clicked()
 {
     hrwindow *hrUI=new hrwindow();
     this->close();
-    hrUI->search_user_Tab_select();
+    hrUI->add_user_Tab_select();
     hrUI->show();
 }
 
@@ -28,7 +28,7 @@ void hr_splash::on_addUser_clicked()
 {
     hrwindow *hrUI=new hrwindow();
     this->close();
-    hrUI->add_user_Tab_select();
+    hrUI->search_user_Tab_select();
     hrUI->show();
 }
 
