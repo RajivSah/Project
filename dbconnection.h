@@ -16,6 +16,17 @@ public:
 
     }
 
+    bool connect()
+    {
+        if(db.open())
+            return true;
+        else
+            return false;
+    }
+    void close()
+    {
+        db.close();
+    }
 
 
 };
