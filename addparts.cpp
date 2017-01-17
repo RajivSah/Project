@@ -45,6 +45,7 @@ void addParts::on_addPushButton_clicked()
     else
     {
         qDebug()<<"data added sucessfully";
+        this->close();
     }
     }
 

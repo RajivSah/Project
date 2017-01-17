@@ -27,18 +27,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     hrwindow.cpp \
     hr_splash.cpp \
-    addparts.cpp
+    addparts.cpp \
+    partstore.cpp
 
 HEADERS  += mainwindow.h \
     hrwindow.h \
     hr_splash.h \
     dbconnection.h \
-    addparts.h
+    addparts.h \
+    partstore.h
 
 FORMS    += mainwindow.ui \
     hrwindow.ui \
     hr_splash.ui \
-    addparts.ui
+    addparts.ui \
+    partstore.ui
 
 RESOURCES += \
     reso.qrc
