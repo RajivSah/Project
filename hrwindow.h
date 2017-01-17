@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSqlQueryModel>
+#include"dbconnection.h"
 
 namespace Ui {
 class hrwindow;
@@ -17,7 +18,7 @@ public:
     ~hrwindow();
 
     //Variables
-
+    DBCONNECTION connector {"hrwindow"};
 
 
 

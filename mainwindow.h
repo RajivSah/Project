@@ -5,6 +5,7 @@
 #include <QtSql/QSqlDatabase>
 #include "hrwindow.h"
 #include "hr_splash.h"
+#include "addparts.h"
 
 namespace Ui {
 class MainWindow;

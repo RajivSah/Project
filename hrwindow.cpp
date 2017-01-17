@@ -13,7 +13,7 @@
 #include <QDesktopWidget>
 #include <QStringList>
 
-DBCONNECTION connector;
+
 hrwindow::hrwindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::hrwindow)
