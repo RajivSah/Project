@@ -17,6 +17,8 @@ public:
     ~partstore();
     DBCONNECTION connector{"partstore"};
     QString prevID;
+    QString ID;
+    void update_tableView_Detail();
 
 private slots:
     void on_pushButton_clicked();
@@ -28,6 +30,13 @@ private slots:
     void on_pushButton_Edit_clicked();
 
     void on_pushButton_Update_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_newEdit_clicked();
+
+    void on_pushButton_add_clicked();
+
 
 private:
     Ui::partstore *ui;
