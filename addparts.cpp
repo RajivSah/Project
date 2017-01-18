@@ -1,7 +1,6 @@
 #include "addparts.h"
 #include "ui_addparts.h"
 #include <QSqlQuery>
-#include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
 
@@ -22,9 +21,7 @@ void addParts::on_addPushButton_clicked()
 
    if(!connector.db.open())
     {
-        QMessageBox msg;
-        msg.setText("data cannot be added");
-        msg.exec();
+        displayMessage("Data Cannot be Added");
         qDebug()<<connector.db.lastError();
         return;
     }
@@ -38,8 +35,7 @@ void addParts::on_addPushButton_clicked()
     if(!query->exec())
 
     {
-        QMessageBox msg;
-        msg.setText("data cannot be added");
+        displayMessage("Execution Failed");
         return;
     }
     else
@@ -51,3 +47,8 @@ void addParts::on_addPushButton_clicked()
 
 
     }
+void addParts::displayMessage(QString msg)
+{
+    message.setText(msg);
+    message.exec();
+}

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dbconnection.h"
+#include <QMessageBox>
 
 namespace Ui {
 class partstore;
@@ -17,8 +18,9 @@ public:
     ~partstore();
     DBCONNECTION connector{"partstore"};
     QString prevID;
-    QString ID;
+//    QString ID;
     void update_tableView_Detail();
+    void enable_GroupBox(bool x);
 
 private slots:
     void on_pushButton_clicked();
@@ -40,6 +42,8 @@ private slots:
 
 private:
     Ui::partstore *ui;
+    QMessageBox message;
+    void displayMessage(QString);
 };
 
 #endif // PARTSTORE_H
