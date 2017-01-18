@@ -6,154 +6,229 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>406</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>60</y>
-     <width>312</width>
-     <height>171</height>
+     <x>20</x>
+     <y>20</y>
+     <width>368</width>
+     <height>223</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Name</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="nameLineEdit">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>35</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>ID</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="IDLineEdit">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>35</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Selling Price</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="spLineEdit">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>38</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="addPushButton">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>ADD</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="styleSheet">
+       <string notr="true">QGroupBox
+{
+ 
+	background-color: rgb(255, 255, 255);
+ border:none;
+}
+QLabel
+{
+ font: 75 italic 14pt &quot;Calibri&quot;;
+	color: rgb(108, 108, 108);
+padding-bottom: 0;
+
+}
+QLineEdit
+{
+font: 12pt &quot;Calibri&quot;;
+
+border: 1px solid;
+border-color: rgb(172, 172, 172);
+padding: 5px;
+
+}
+QLineEdit:focus
+{
+border-color:rgb(85, 170, 255);
+border-width:1px;
+border-style:solid;
+}
+QPushButton:hover
+{
+background-color: rgb(0, 85, 255);
+
+}
+
+QPushButton 
+{
+     font: 75  14pt &quot;Calibri&quot;;
+	background-color: rgb(0, 170, 255);
+	
+	color: rgb(255, 255, 255);
+
+	border-radius: 5px;
+}
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Name</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="nameLineEdit">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="IDLineEdit">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Selling Price</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="spLineEdit">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>38</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addPushButton">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>ADD</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">font: 75 16pt &quot;Calibri&quot;;
+ padding-left:114px;
+color: rgb(53, 53, 53);
+</string>
+         </property>
+         <property name="text">
+          <string>ADD New Part</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>

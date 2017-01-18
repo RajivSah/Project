@@ -15,6 +15,7 @@ class addParts : public QDialog
 
 public:
     explicit addParts(QWidget *parent = 0);
+    void setValidator();
     ~addParts();
 
 

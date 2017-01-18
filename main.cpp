@@ -5,11 +5,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-//    MainWindow w;
-//   w.show();
-//    addParts p;
-//    p.show();
-    partstore ps;
+    MainWindow w;
+   w.show();
+   partstore ps;
     ps.show();
     return a.exec();
 }

@@ -7,12 +7,15 @@
 #include<QMessageBox>
 #include <QDate>
 #include <QSqlTableModel>
-
+#include <QGraphicsDropShadowEffect>
 partstore::partstore(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::partstore)
 {
     ui->setupUi(this);
+    setValidator();
+    setInitials();
+    addGraphicsEffect();
 }
 
 partstore::~partstore()
@@ -42,6 +45,11 @@ void partstore::on_searchButton_textChanged(const QString &arg1)
         ui->tableView->setModel(model);
         ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tableView->hideColumn(3);
+        for (int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c)
+        {
+            ui->tableView->horizontalHeader()->setSectionResizeMode(
+                c, QHeaderView::Stretch);
+        }
 //      qDebug()<<connector.db.lastError();
 
     connector.db.close();
@@ -104,6 +112,7 @@ void partstore::on_pushButton_Update_clicked()
             {
                 throw 1;
             }
+
             if(!query2->exec())
             {
                 throw 1;
@@ -141,7 +150,7 @@ void partstore::on_pushButton_Update_clicked()
 
 void partstore::on_pushButton_2_clicked()
 {
-    ui->lineEdit_date->setText(QDate::currentDate().toString("dd/MM/yyyy"));
+    ui->lineEdit_date->setText(QDate::currentDate().toString("yyyy/MM/dd"));
 }
 
 void partstore::on_pushButton_newEdit_clicked()
@@ -196,17 +205,25 @@ void partstore::on_pushButton_add_clicked()
 }
 void partstore::update_tableView_Detail()
 {
-/*
-    QSqlQuery *query=new QSqlQuery(connector.db);
-    query->prepare("SELECT * FROM WHERE ID =?");
-    query->addBindValue(ID);*/
-    connector.db.open();
+
+    if(!connector.db.open())
+    {
+        displayMessage("Cannot connect");
+        return;
+    }
     QSqlTableModel *model=new QSqlTableModel(nullptr,connector.db);
     model->setTable("partstock");
     model->setFilter("ID='"+prevID+"'");
     model->select();
-//    qDebug()<<model->lastError().text();
+    model->setSort(1,Qt::DescendingOrder);
+
     ui->tableView_Detail->setModel(model);
+    ui->tableView_Detail->hideColumn(0);
+    for (int c = 0; c < ui->tableView_Detail->horizontalHeader()->count(); ++c)
+    {
+        ui->tableView_Detail->horizontalHeader()->setSectionResizeMode(
+            c, QHeaderView::Stretch);
+    }
 }
 void partstore::displayMessage(QString msg)
 {
@@ -220,6 +237,60 @@ void partstore::enable_GroupBox(bool x)
     ui->pushButton_Edit->setEnabled(x);
     ui->pushButton_newEdit->setEnabled(x);
     ui->pushButton_2->setEnabled(x);
+    ui->pushButton_add->setEnabled(!x);
+    ui->pushButton_Update->setEnabled(!x);
+    ui->lineEdit_Name->setEnabled(0);
+    ui->lineEdit_ID->setEnabled(0);
+    ui->lineEdit_Quantity->setEnabled(0);
+    ui->lineEdit_SP->setEnabled(0);
+    ui->pushButton_Update->setEnabled(0);
+    ui->lineEdit_date->setEnabled(0);
+    ui->lineEdit_newQuantity->setEnabled(0);
+    ui->pushButton_add->setEnabled(0);
+    ui->pushButton_2->setEnabled(0);
+
+
+}
+void partstore::setValidator()
+{
+    QRegExp exp("[a-z A-Z 0,9]{0,20}");
+    QRegExp exp2("[a-z A-Z]{0,20}");
+    QRegExp exp3("[0-9]{0,9}");
+
+    ui->searchButton->setValidator(new QRegExpValidator(exp));
+    ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
+    ui->lineEdit_Quantity->setValidator(new QRegExpValidator(exp3));
+    ui->lineEdit_newQuantity->setValidator(new QRegExpValidator(exp3));
+    ui->lineEdit_SP->setValidator(new QRegExpValidator(exp3));
+    ui->lineEdit_Name->setValidator(new QRegExpValidator(exp));
+    ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
 }
 
+void partstore::setInitials()
+{
+    ui->tableView->setAlternatingRowColors(1);
 
+}
+void partstore::addGraphicsEffect()
+{
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
+
+    effect->setBlurRadius(5);
+    effect->setOffset(0,0);
+    effect->setColor(Qt::gray);
+    ui->groupBox_2->setGraphicsEffect(effect);
+
+    QGraphicsDropShadowEffect *effect2 = new QGraphicsDropShadowEffect();
+
+    effect2->setBlurRadius(5);
+    effect2->setOffset(0,0);
+    effect2->setColor(Qt::gray);
+    ui->tableView->setGraphicsEffect(effect2);
+
+    QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect();
+
+    effect3->setBlurRadius(5);
+    effect3->setOffset(0,0);
+    effect3->setColor(Qt::gray);
+    ui->searchButton->setGraphicsEffect(effect3);
+}

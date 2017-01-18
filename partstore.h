@@ -21,6 +21,9 @@ public:
 //    QString ID;
     void update_tableView_Detail();
     void enable_GroupBox(bool x);
+    void setValidator();
+    void setInitials();
+    void addGraphicsEffect();
 
 private slots:
     void on_pushButton_clicked();
