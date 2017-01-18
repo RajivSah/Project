@@ -1,15 +1,16 @@
 #include "addparts.h"
 #include "ui_addparts.h"
 #include <QSqlQuery>
-#include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
+
 
 addParts::addParts(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addParts)
 {
     ui->setupUi(this);
+    setValidator();
 }
 
 addParts::~addParts()
@@ -22,14 +23,17 @@ void addParts::on_addPushButton_clicked()
 
    if(!connector.db.open())
     {
-        QMessageBox msg;
-        msg.setText("data cannot be added");
-        msg.exec();
+        displayMessage("Data Cannot be Added");
         qDebug()<<connector.db.lastError();
         return;
     }
     else
     {
+       if(ui->IDLineEdit->text()==NULL)
+       {
+           displayMessage("ID cannot be empty");
+           return;
+       }
     QSqlQuery *query=new QSqlQuery(connector.db);
     query->prepare("INSERT INTO partstore (Name,ID,SellingPrice) VALUES(?,?,?)");
     query->addBindValue(ui->nameLineEdit->text());
@@ -38,8 +42,7 @@ void addParts::on_addPushButton_clicked()
     if(!query->exec())
 
     {
-        QMessageBox msg;
-        msg.setText("data cannot be added");
+        displayMessage("Execution Failed");
         return;
     }
     else
@@ -51,3 +54,17 @@ void addParts::on_addPushButton_clicked()
 
 
     }
+void addParts::displayMessage(QString msg)
+{
+    message.setText(msg);
+    message.exec();
+}
+void addParts::setValidator()
+{
+    QRegExp exp("[0-9]{0,9}");
+    ui->spLineEdit->setValidator(new QRegExpValidator(exp));
+    QRegExp exp1("[a-z A-z 0-9]{0,20}");
+    ui->nameLineEdit->setValidator(new QRegExpValidator(exp1));
+    ui->IDLineEdit->setValidator(new QRegExpValidator(exp1));
+
+}
