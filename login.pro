@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     hr_splash.cpp \
     addparts.cpp \
     partstore.cpp \
-    partspro.cpp
+    partspro.cpp \
+    workshop.cpp
 
 HEADERS  += mainwindow.h \
     hrwindow.h \
@@ -37,14 +38,16 @@ HEADERS  += mainwindow.h \
     dbconnection.h \
     addparts.h \
     partstore.h \
-    partspro.h
+    partspro.h \
+    workshop.h
 
 FORMS    += mainwindow.ui \
     hrwindow.ui \
     hr_splash.ui \
     addparts.ui \
     partstore.ui \
-    partspro.ui
+    partspro.ui \
+    workshop.ui
 
 RESOURCES += \
     reso.qrc
