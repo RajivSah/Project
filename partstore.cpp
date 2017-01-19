@@ -219,6 +219,7 @@ void partstore::update_tableView_Detail()
 
     ui->tableView_Detail->setModel(model);
     ui->tableView_Detail->hideColumn(0);
+    ui->tableView_Detail->hideColumn(3);
     for (int c = 0; c < ui->tableView_Detail->horizontalHeader()->count(); ++c)
     {
         ui->tableView_Detail->horizontalHeader()->setSectionResizeMode(
@@ -294,3 +295,118 @@ void partstore::addGraphicsEffect()
     effect3->setColor(Qt::gray);
     ui->searchButton->setGraphicsEffect(effect3);
 }
+
+void partstore::on_showallpushButton_3_clicked()
+{
+    if(!connector.db.open())
+    {
+        displayMessage("Cannot connect: Try again Later ");
+//        qDebug()<<"cannot connet "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        QSqlQueryModel *model=new QSqlQueryModel();
+        model->setQuery("SELECT * FROM partstore ",connector.db);
+        ui->tableView->setModel(model);
+        ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tableView->hideColumn(3);
+        for (int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c)
+        {
+            ui->tableView->horizontalHeader()->setSectionResizeMode(
+                c, QHeaderView::Stretch);
+        }
+//      qDebug()<<connector.db.lastError();
+
+    connector.db.close();
+    }
+}
+
+void partstore::on_removerecordspushButton_5_clicked()
+{
+    if(!connector.db.open())
+    {
+        displayMessage("cannot connect :Try again later");
+        qDebug()<<"cannot connect "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        try
+        {
+            connector.db.transaction();
+            QSqlQuery *query=new QSqlQuery(connector.db);
+            query->prepare("DELETE FROM partstore where ID = :PrevID");
+            query->addBindValue( prevID );
+            if( !query->exec() )
+            {
+                throw 1;
+            }
+            QSqlQuery *query2=new QSqlQuery(connector.db);
+            query2->prepare("DELETE FROM partstock where ID = :PrevID");
+            query2->addBindValue(prevID);
+            if(!query2->exec())
+            {
+                throw 1;
+            }
+
+             if(!connector.db.commit())
+             {
+                 displayMessage("Deletion Failed");
+             }
+             ui->statusbar->showMessage("Deletion Successfull");
+             update_tableView_Detail();
+        }
+        catch (int)
+        {
+           displayMessage("cannot connect :Try again later");
+           ui->statusbar->showMessage("Update Failed");
+           connector.db.rollback();
+        }
+
+        connector.db.close();
+    }
+    on_showallpushButton_3_clicked();
+
+}
+
+void partstore::on_removeentrypushButton_4_clicked()
+{
+    if(!connector.db.open())
+    {
+        displayMessage("cannot connect :Try again later");
+        qDebug()<<"cannot connect "<<connector.db.lastError();
+        return;
+    }
+    else
+    {
+        QSqlQuery *query=new QSqlQuery(connector.db);
+        query->prepare("DELETE FROM partstock where pid = :Pid");
+        query->addBindValue(pid);
+        if(!query->exec())
+        {
+
+        }
+        else
+        {
+            update_tableView_Detail();
+            displayMessage("Stock successfully removed" );
+        }
+
+    }
+}
+
+void partstore::on_tableView_Detail_clicked(const QModelIndex &index)
+{
+     pid = index.sibling(index.row(),3).data().toInt();
+
+}
+
+void partstore::on_seepartspropushButton_3_clicked()
+{
+    this->close();
+    partspro *pp = new partspro();
+    pp->show();
+
+}
+
