@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "dbconnection.h"
 #include <QMessageBox>
+#include "partspro.h"
 
 namespace Ui {
 class partstore;
@@ -50,6 +51,8 @@ private slots:
     void on_removeentrypushButton_4_clicked();
 
     void on_tableView_Detail_clicked(const QModelIndex &index);
+
+    void on_seepartspropushButton_3_clicked();
 
 private:
     Ui::partstore *ui;

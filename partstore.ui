@@ -604,6 +604,12 @@ QPushButton
           <height>336</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>336</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
@@ -871,6 +877,42 @@ QPushButton
      <string>Remove record </string>
     </property>
    </widget>
+   <widget class="QPushButton" name="seepartspropushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>90</y>
+      <width>256</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover
+{
+background-color: rgb(0, 85, 255);
+
+}
+
+QPushButton 
+{
+     font: 75  14pt &quot;Calibri&quot;;
+	background-color: rgb(0, 170, 255);
+	
+	color: rgb(255, 255, 255);
+
+	border-radius: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Go to Parts Processing</string>
+    </property>
+   </widget>
    <zorder>groupBox_2</zorder>
    <zorder>pushButton</zorder>
    <zorder>tableView</zorder>
@@ -878,6 +920,7 @@ QPushButton
    <zorder>tableView_3</zorder>
    <zorder>showallpushButton_3</zorder>
    <zorder>removerecordspushButton_5</zorder>
+   <zorder>seepartspropushButton_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

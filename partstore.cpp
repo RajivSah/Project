@@ -401,3 +401,12 @@ void partstore::on_tableView_Detail_clicked(const QModelIndex &index)
      pid = index.sibling(index.row(),3).data().toInt();
 
 }
+
+void partstore::on_seepartspropushButton_3_clicked()
+{
+    this->close();
+    partspro *pp = new partspro();
+    pp->show();
+
+}
+
