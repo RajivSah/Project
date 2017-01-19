@@ -43,10 +43,19 @@ private slots:
     void on_pushButton_add_clicked();
 
 
+    void on_showallpushButton_3_clicked();
+
+    void on_removerecordspushButton_5_clicked();
+
+    void on_removeentrypushButton_4_clicked();
+
+    void on_tableView_Detail_clicked(const QModelIndex &index);
+
 private:
     Ui::partstore *ui;
     QMessageBox message;
     void displayMessage(QString);
+    int pid;
 };
 
 #endif // PARTSTORE_H

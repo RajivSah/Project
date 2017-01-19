@@ -53,8 +53,8 @@ border-style:solid;
      <rect>
       <x>540</x>
       <y>130</y>
-      <width>730</width>
-      <height>481</height>
+      <width>734</width>
+      <height>478</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -67,23 +67,13 @@ padding: 41;
     <property name="title">
      <string/>
     </property>
-    <widget class="QTableView" name="tableView_Detail">
-     <property name="geometry">
-      <rect>
-       <x>425</x>
-       <y>50</y>
-       <width>255</width>
-       <height>381</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>50</x>
        <y>50</y>
-       <width>369</width>
-       <height>381</height>
+       <width>370</width>
+       <height>378</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -590,6 +580,87 @@ QPushButton
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>426</x>
+       <y>50</y>
+       <width>258</width>
+       <height>378</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <widget class="QTableView" name="tableView_Detail">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>336</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_19">
+        <item>
+         <spacer name="horizontalSpacer_21">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeentrypushButton_4">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton:hover
+{
+background-color: rgb(182, 0, 0);
+
+}
+
+QPushButton 
+{
+     font: 75  14pt &quot;Calibri&quot;;
+	background-color: rgbrgb(255, 0, 0);
+	
+	color: rgb(255, 255, 255);
+
+	border-radius: 5px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Remove Stock</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -728,6 +799,85 @@ border-right: 2px solid #e3e3e3;
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="showallpushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>620</y>
+      <width>150</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover
+{
+background-color: rgb(0, 85, 255);
+
+}
+
+QPushButton 
+{
+     font: 75  14pt &quot;Calibri&quot;;
+	background-color: rgb(0, 170, 255);
+	
+	color: rgb(255, 255, 255);
+
+	border-radius: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Show all</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removerecordspushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>620</y>
+      <width>150</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover
+{
+background-color: rgb(182, 0, 0);
+
+}
+
+QPushButton 
+{
+     font: 75  14pt &quot;Calibri&quot;;
+	background-color: rgbrgb(255, 0, 0);
+	
+	color: rgb(255, 255, 255);
+
+	border-radius: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Remove record </string>
+    </property>
+   </widget>
+   <zorder>groupBox_2</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>tableView</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>tableView_3</zorder>
+   <zorder>showallpushButton_3</zorder>
+   <zorder>removerecordspushButton_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
