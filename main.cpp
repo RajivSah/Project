@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include "partstore.h"
+#include "workshop.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,5 +10,7 @@ int main(int argc, char *argv[])
 //   w.show();
    partstore ps;
     ps.show();
+    workshop w;
+    w.show();
     return a.exec();
 }

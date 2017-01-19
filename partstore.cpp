@@ -410,3 +410,25 @@ void partstore::on_seepartspropushButton_3_clicked()
 
 }
 
+
+void partstore::on_sendentrypushButton_4_clicked()
+{
+    QString Name, no, date;
+    Name = ui->lineEdit_Name->text()  ;
+    no = ui->lineEdit_ID->text() ;
+    date =ui->lineEdit_date->text();
+    if ( Name != NULL && no!= NULL && date!= NULL )
+    {
+   QSqlQuery * query = new QSqlQuery( connector.db ) ;
+   connector.db.open();
+   query->prepare( "insert into partsprocessing (PartName, PartNo, EntryDate ) VALUES(?,?,?)" );
+
+   query->addBindValue( Name );
+   query->addBindValue( no );
+   query->addBindValue( date );
+
+   query->exec();
+  connector.db.close();
+  ui->lineEdit_date->clear();
+  ui->lineEdit_newQuantity->clear();
+}}

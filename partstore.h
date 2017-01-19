@@ -54,6 +54,8 @@ private slots:
 
     void on_seepartspropushButton_3_clicked();
 
+    void on_sendentrypushButton_4_clicked();
+
 private:
     Ui::partstore *ui;
     QMessageBox message;
