@@ -23,5 +23,6 @@
         <file>res/login_form.png</file>
         <file>res/outlander-phev.png</file>
         <file>res/wshop_bg.png</file>
+        <file>res/parts.png</file>
     </qresource>
 </RCC>

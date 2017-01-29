@@ -14,7 +14,8 @@ class hrwindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit hrwindow(QWidget *parent = 0);
+     explicit hrwindow(bool adminMode=0,QWidget *parent = 0);
+
     ~hrwindow();
 
     //Variables
@@ -30,6 +31,8 @@ public:
      void setInitails();
      void setInputValidator();
      void setSizes();
+     void adminView();
+
 private slots:
      void on_ClearButton_clicked();
 
@@ -55,6 +58,7 @@ private slots:
 
      void on_removeButton_clicked();
 
+
 private:
     Ui::hrwindow *ui;
     QSqlQueryModel *model1=new QSqlQueryModel();
@@ -64,6 +68,7 @@ private:
     int searchKey1;
     int searchKey2;
     int searchKey3;
+
 };
 
 

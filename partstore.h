@@ -15,7 +15,7 @@ class partstore : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit partstore(QWidget *parent = 0);
+    explicit partstore(bool adminMode=0,QWidget *parent = 0);
     ~partstore();
     DBCONNECTION connector{"partstore"};
     QString prevID;
@@ -25,6 +25,7 @@ public:
     void setValidator();
     void setInitials();
     void addGraphicsEffect();
+    void adminView();
 
 private slots:
     void on_pushButton_clicked();
@@ -61,6 +62,7 @@ private:
     QMessageBox message;
     void displayMessage(QString);
     int pid;
+    bool aM;
 };
 
 #endif // PARTSTORE_H

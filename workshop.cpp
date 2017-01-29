@@ -6,12 +6,15 @@
 #include <dbconnection.h>
 #include <QMessageBox>
 
-workshop::workshop(QWidget *parent) :
+workshop::workshop(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::workshop)
 {
     ui->setupUi(this);
-
+    if(adminMode == 1)
+    {
+        adminView();
+    }
     setInitials();
 }
 
@@ -23,10 +26,6 @@ workshop::~workshop()
 
 void workshop::setSizes()
 {
-    QRect screenSize =QApplication::desktop()->availableGeometry();
-
-    qDebug()<<screenSize;
-    this->setFixedSize(screenSize.width()+10,screenSize.height()*0.96);
 
 
 }
@@ -129,8 +128,10 @@ void workshop::hideColumns()
     ui->tableView->hideColumn(0);
     ui->tableView->hideColumn(3);
 
-    //ui->tableView->hideColumn(5);
 
+
+    ui->tableView->hideColumn(5);
+    ui->tableView->hideColumn(6);
     ui->tableView->hideColumn(7);
     ui->tableView->hideColumn(8);
     ui->tableView->hideColumn(10);
@@ -138,66 +139,90 @@ void workshop::hideColumns()
     ui->tableView->hideColumn(13);
     ui->tableView->hideColumn(14);
 
+    ui->tableView->setColumnWidth(9, 200);
+    ui->tableView->setColumnWidth(2, 150);
+
 }
 
 
 void workshop::on_tableView_clicked(const QModelIndex &index)
 {
+
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->selectionModel()->setCurrentIndex(index, QItemSelectionModel::NoUpdate);
 
-    Rid = (index.sibling( index.row(), 0).data().toInt() );
-  QString VRN = (index.sibling( index.row(), 0).data().toString() );
- QString Model = (index.sibling( index.row(), 1).data().toString() );
- QString VIN = (index.sibling( index.row(), 2).data().toString() );
-QString CuNo = (index.sibling( index.row(), 3).data().toString() );
- QString MoNo= (index.sibling( index.row(), 4).data().toString() );
+             Rid = (index.sibling( index.row(), 0).data().toInt() );
+     QString VRN = (index.sibling( index.row(), 1).data().toString() );
 
- QString DrCo = (index.sibling( index.row(), 5).data().toString() );
- QDate Date = (index.sibling( index.row(), 6).data().toDate() );
- QString Date1 = Date.toString();
- QString Jorder = (index.sibling( index.row(), 7).data().toString() );
- QString Jdone = (index.sibling( index.row(), 8).data().toString() );
+     QString Model = (index.sibling( index.row(), 2).data().toString() );
+     QString VIN = (index.sibling( index.row(), 3).data().toString() );
+    QString VName = (index.sibling( index.row(), 4).data().toString() );
+    QString VBrand = (index.sibling( index.row(), 5).data().toString() );
+       QString MfdYear = (index.sibling( index.row(), 6).data().toString() );
+     QString OdoReading = (index.sibling( index.row(), 7).data().toString() );
+     QString Distance = (index.sibling( index.row(), 8).data().toString() );
+       QString CuNo = (index.sibling( index.row(), 9).data().toString() );
+     QString MoNo= (index.sibling( index.row(), 10).data().toString() );
 
-ui->VRN_lineEdit->setText( VRN );
-ui->Model_lineEdit->setText( Model );
-ui->VIN_lineEdit->setText( VIN );
-ui->CustomerName_lineEdit->setText( CuNo );
-ui->CMobileno_lineEdit->setText( MoNo );
+     QString DrCo = (index.sibling( index.row(), 11).data().toString() );
+     QString Date1 = (index.sibling( index.row(), 12).data().toString() );
 
-ui->drivercontact_lineEdit->setText( DrCo );
-ui->templineEdit->setText( Date1 );
-//ui->dateCombobox->setItemText( 0,Date1 );
-ui->Joborder_lineEdit->setText( Jorder );
-ui->Jobdone_textEdit_2->insertPlainText(Jdone );
-
-//search for those records with same VRN to get different dates
-d.db.open();
-QSqlQuery *query1 = new QSqlQuery(d.db);
+     QString Jorder = (index.sibling( index.row(), 13).data().toString() );
+     QString Jdone = (index.sibling( index.row(), 14).data().toString() );
 
 
 
-query1 -> prepare("SELECT *FROM tbl_name WHERE VRN = :VRN ORDER BY DATE desc");
-query1 ->addBindValue(VRN);
-query1 -> exec();
+    ui->VRN_lineEdit->setText( VRN );
+    ui->Model_lineEdit->setText( Model );
+    ui->VIN_lineEdit->setText( VIN );
+    ui->VNamelineEdit->setText( VName );
+    ui->MfdyrlineEdit->setText( MfdYear ) ;
+    ui->OReadLineEdit->setText( OdoReading );
 
-QSqlQueryModel *model1= new QSqlQueryModel();
+    ui->CustomerName_lineEdit->setText( CuNo );
+    ui->CMobileno_lineEdit->setText( MoNo );
+    ui->drivercontact_lineEdit->setText( DrCo );
 
-model1 ->setQuery( *query1 );
-ui->tableView->setModel( model1 );
+    ui->templineEdit->setText( Date1 );
 
-changeBoxItems();
-ui->VBrandCombobox->clear();
-ui->VBrandCombobox->addItem("Mitsubishi");
-ui->VBrandCombobox->addItem("Others");
-ui->VBrandCombobox->setCurrentText( VBrand );
-//
-ui->distancecomboBox->clear();
-ui->distancecomboBox->addItem("KM");
-ui->distancecomboBox->addItem("Miles");
-ui->distancecomboBox->setCurrentText( Distance );
+    ui->Joborder_lineEdit->setText(Jorder );
+    ui->Jobdone_textEdit_2->setText(Jdone );
+
+    //ui->Jobdone_textEdit_2->setText( );
+
+    //search for those records with same VRN to get different dates
+    d.db.open();
+    QSqlQuery *query1 = new QSqlQuery(d.db);
 
 
+
+    query1 -> prepare("SELECT *FROM tbl_name WHERE VRN = :VRN ORDER BY DATE desc");
+    query1 ->addBindValue(VRN);
+    query1 -> exec();
+
+    QSqlQueryModel *model1= new QSqlQueryModel();
+
+    model1 ->setQuery( *query1 );
+    ui->tableView->setModel( model1 );
+    //QModelIndex index1 = ui->tableView->currentIndex();
+
+    //ui->tableView->selectionModel()->select( newIndex, QItemSelectionModel::Select);
+    //
+    //ui->tableView->selectionModel()->setCurrentIndex(index, QItemSelectionModel::NoUpdate);
+
+
+    changeBoxItems();
+
+    ui->dateCombobox->setCurrentText(Date1);
+    ui->VBrandCombobox->clear();
+    ui->VBrandCombobox->addItem("Mitsubishi");
+    ui->VBrandCombobox->addItem("Others");
+    ui->VBrandCombobox->setCurrentText( VBrand );
+    //
+    ui->distancecomboBox->clear();
+    ui->distancecomboBox->addItem("KM");
+    ui->distancecomboBox->addItem("Miles");
+    ui->distancecomboBox->setCurrentText( Distance );
 
 
 }
@@ -223,6 +248,7 @@ void workshop::changeBoxItems()
     Date2 = (newIndex.sibling( newIndex.row(), 12).data().toString() );
 
     }while( Date2 != "");
+
 }
 
 void workshop::on_clearPush_clicked()
@@ -247,68 +273,71 @@ void workshop::on_clearPush_clicked()
 void workshop::getData()
 {
     VRN = ui->VRN_lineEdit->text();
-    Model = ui->Model_lineEdit->text();
-    VIN = ui->VIN_lineEdit->text();
-    CuNo = ui->CustomerName_lineEdit->text();
-    MoNo = ui->CMobileno_lineEdit->text();
-    DrCo= ui->drivercontact_lineEdit->text(  );
-    Date1= ui->templineEdit->text();
-    //ui->dateCombobox->setItemText( 0,Date1 );
-    Jorder=ui->Joborder_lineEdit->toPlainText();
-    Jdone= ui->Jobdone_textEdit_2->toPlainText();
+       Model = ui->Model_lineEdit->text();
+       VIN = ui->VIN_lineEdit->text();
+       VName = ui->VNamelineEdit->text();
+
+       VBrand = ui->VBrandCombobox->currentText();
+
+       MfdYear = ui->MfdyrlineEdit->text();
+       OdoReading = ui->OReadLineEdit->text();
+       CuNo = ui->CustomerName_lineEdit->text();
+       MoNo = ui->CMobileno_lineEdit->text();
+       DrCo= ui->drivercontact_lineEdit->text(  );
+       Date1= ui->templineEdit->text(  );
+       Distance = ui->distancecomboBox->currentText();
+       //ui->dateCombobox->setItemText( 0,Date1 );
+       Jorder=ui->Joborder_lineEdit->toPlainText(  );
+       Jdone= ui->Jobdone_textEdit_2->toPlainText();
 }
 
 void workshop::on_Add_clicked()
 {
     QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(this, "Confirm", "Are you sure?",
-                                              QMessageBox::Yes|QMessageBox::No);
-                if( reply == QMessageBox::Yes )
+              reply = QMessageBox::question(this, "Confirm", "Are you sure?",
+                                            QMessageBox::Yes|QMessageBox::No);
+              if( reply == QMessageBox::Yes )
+              {
+    getData();
 
-   getData();
+     qDebug()<<(VRN);
+       if( ( VRN != "") && (Date1 != "") )
+      {
+           d.db.open();
+       query = new QSqlQuery(d.db);//
+       query->prepare("INSERT INTO tbl_name ( VRN, Model , VIN, VehicleName, VehicleBrand ,MfdYear, OdometerReading,Distance, CustomerName, MobileNo,DriverContact, Date, Joborder, JobDone ) VALUES ( :VRN, :Model , :VIN , :VehicleName, :VehicleBrand ,:MfdYear, :OdometerReading , :Distance,:CustomerName, :MobileNo, :DriverContact, :Date, :Joborder, :JobDone)");
 
-    qDebug()<<(VRN);
+       query->addBindValue(  VRN );
+        query->addBindValue( Model );
+         query->addBindValue( VIN );
+         query->addBindValue( VName );
+         query->addBindValue( VBrand );
+         query->addBindValue( MfdYear );
+         query->addBindValue( OdoReading );
+         query->addBindValue( Distance );
+         query->addBindValue( CuNo );
+         query->addBindValue( MoNo );
+         query->addBindValue( DrCo );
+         query->addBindValue( Date1 );
+         query->addBindValue(Jorder );
+         query->addBindValue( Jdone );
 
-      if( ( VRN != "") && (Date1 != "") )
-     {
+       query->exec();
+       qDebug() << (VRN)<<query->lastError();
+       d.db.close();
+       }
+       else
 
-          if(!d.db.open())
-          {
-              qDebug()<<"cannot connect";
-              ui->statusbar->showMessage("Can't Connect", 2000);
-                        return;
-          }
+        qDebug() <<"Error data not added";
+       ui->Search_lineEdit->setText( "" );
 
-      query = new QSqlQuery(d.db);//
-      query->prepare("INSERT INTO tbl_name ( VRN, Model , VIN , CustomerName, MobileNo,DriverContact, Date, Joborder, JobDone ) VALUES ( :VRN, :Model , :VIN , :CustomerName, :MobileNo, :DriverContact, :Date, :Joborder, :JobDone)");
+        ui->Search_lineEdit->setText( VRN );
 
-      query->addBindValue(  VRN );
-       query->addBindValue( Model );
-        query->addBindValue(VIN );
-        query->addBindValue( CuNo );
-        query->addBindValue( MoNo );
-        query->addBindValue( DrCo );
-        query->addBindValue( Date1 );
-        query->addBindValue(Jorder );
-        query->addBindValue( Jdone );
-
-      query->exec();
-      qDebug() << (VRN)<<query->lastError();
-      d.db.close();
-      }
-      else
-
-       qDebug() <<"Error data not added";
-
-      ui->Search_lineEdit->setText( "" );
-
-             ui->Search_lineEdit->setText( VRN );
-
-      changeBoxItems();
+ changeBoxItems();
 }
 
 
-
+}
 void workshop::on_updatepush_clicked()
 {
     QMessageBox::StandardButton reply;
@@ -468,4 +497,11 @@ void workshop::on_pushButton_2_clicked()
 
    ui->templineEdit->setText( today );
 }
-
+void workshop::adminView()
+{
+    ui->Add->setDisabled(1);
+    ui->pushButton_2->setDisabled(1);
+    ui->clearPush->setDisabled(1);
+    ui->deletePush->setDisabled(1);
+    ui->updatepush->setDisabled(1);
+}

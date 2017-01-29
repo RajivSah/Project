@@ -14,32 +14,20 @@
 #include <QStringList>
 
 
-hrwindow::hrwindow(QWidget *parent) :
+hrwindow::hrwindow(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::hrwindow)
 {
-    //
+
     ui->setupUi(this);
 
     setInitails();
     setInputValidator();
 
-
-
-/*    if(connector.connect())
+    if(adminMode == 1)
     {
-        qDebug() << "Database Connected";
+        adminView();
     }
-    else
-        qDebug() << "Database Error";
-*/
-//    connect(ui->searchButton, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-//    connect(ui->searchButton_2, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-//    connect(ui->searchButton_3, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-
-
-
-
 
 }
 void hrwindow::setInitails()
@@ -603,3 +591,11 @@ void hrwindow::on_removeButton_clicked()//remove button click
     connector.db.close();
     }
 }
+void hrwindow::adminView()
+{
+    ui->tabWidget->removeTab(3);
+    ui->tabWidget->removeTab(2);
+    ui->tabWidget->removeTab(0);
+
+}
+
