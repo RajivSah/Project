@@ -13,6 +13,7 @@ partstore::partstore(bool adminMode, QWidget *parent) :
     ui(new Ui::partstore)
 {
     ui->setupUi(this);
+    this->showMaximized();
     aM=adminMode;
     if(adminMode == 1)
     {
@@ -155,7 +156,7 @@ void partstore::on_pushButton_Update_clicked()
 
 void partstore::on_pushButton_2_clicked()
 {
-    ui->lineEdit_date->setText(QDate::currentDate().toString("yyyy/MM/dd"));
+    ui->lineEdit_date->setText(QDate::currentDate().toString("yyyy-MM-dd"));
 }
 
 void partstore::on_pushButton_newEdit_clicked()
@@ -262,6 +263,7 @@ void partstore::setValidator()
     QRegExp exp("[a-z A-Z 0,9]{0,20}");
     QRegExp exp2("[a-z A-Z]{0,20}");
     QRegExp exp3("[0-9]{0,9}");
+    QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
     ui->searchButton->setValidator(new QRegExpValidator(exp));
     ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
@@ -270,6 +272,7 @@ void partstore::setValidator()
     ui->lineEdit_SP->setValidator(new QRegExpValidator(exp3));
     ui->lineEdit_Name->setValidator(new QRegExpValidator(exp));
     ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
+    ui->lineEdit_date->setValidator(new QRegExpValidator(exp4));
 }
 
 void partstore::setInitials()
@@ -395,7 +398,7 @@ void partstore::on_removeentrypushButton_4_clicked()
         else
         {
             update_tableView_Detail();
-            displayMessage("Stock successfully removed" );
+            ui->statusbar->showMessage("Stock successfully removed" );
         }
 
     }
@@ -446,4 +449,13 @@ void partstore::adminView()
     ui->sendentrypushButton_4->setDisabled(1);
     ui->pushButton_Edit->setDisabled(1);
     ui->pushButton_newEdit->setDisabled(1);
+}
+
+void partstore::on_lineEdit_date_cursorPositionChanged(int arg1, int arg2)
+{
+    if(ui->lineEdit_date->text()=="    -  -  ")
+    {
+        qDebug()<<"date cursor position changed";
+        SetCursorPos(0,0);
+    }
 }

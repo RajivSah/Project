@@ -10,6 +10,7 @@
 #include "workshop.h"
 #include "dbconnection.h"
 #include "QMessageBox"
+#include "sales.h"
 namespace Ui {
 class Admin;
 }
@@ -19,7 +20,7 @@ class Admin : public QWidget
     Q_OBJECT
 
 public:
-    explicit Admin(QWidget *parent = 0);
+    explicit Admin( QWidget *parent = 0);
     void chooseDepartment();
     QMessageBox message;
     void displayMessage(QString);

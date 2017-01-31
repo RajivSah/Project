@@ -92,7 +92,7 @@ QTabBar::tab:!selected:hover
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -1074,10 +1074,10 @@ color: rgb(0, 0, 0);
                    <set>Qt::ImhDate|Qt::ImhFormattedNumbersOnly</set>
                   </property>
                   <property name="inputMask">
-                   <string>9999/99/99</string>
+                   <string>9999-99-99</string>
                   </property>
                   <property name="text">
-                   <string>//</string>
+                   <string>--</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -2162,10 +2162,10 @@ color: rgb(0, 0, 0);
                    <set>Qt::ImhDate|Qt::ImhFormattedNumbersOnly</set>
                   </property>
                   <property name="inputMask">
-                   <string>9999/99/99</string>
+                   <string>9999-99-99</string>
                   </property>
                   <property name="text">
-                   <string>//</string>
+                   <string>--</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -3383,10 +3383,10 @@ color: rgb(0, 0, 0);
                    <set>Qt::ImhDate|Qt::ImhFormattedNumbersOnly</set>
                   </property>
                   <property name="inputMask">
-                   <string>9999/99/99</string>
+                   <string>9999-99-99</string>
                   </property>
                   <property name="text">
-                   <string>//</string>
+                   <string>--</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -4042,10 +4042,10 @@ color: rgb(0, 0, 0);
                    <set>Qt::ImhDate|Qt::ImhFormattedNumbersOnly</set>
                   </property>
                   <property name="inputMask">
-                   <string>9999/99/99</string>
+                   <string>9999-99-99</string>
                   </property>
                   <property name="text">
-                   <string>//</string>
+                   <string>--</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

@@ -485,7 +485,7 @@ QPushButton
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>740</x>
@@ -586,6 +586,9 @@ padding-bottom: 0;</string>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
+              <property name="placeholderText">
+               <string>YYYY-MM-DD</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -623,6 +626,12 @@ padding-bottom: 0;</string>
                <widget class="QLineEdit" name="OdatelineEdit_4">
                 <property name="styleSheet">
                  <string notr="true"/>
+                </property>
+                <property name="inputMask">
+                 <string/>
+                </property>
+                <property name="placeholderText">
+                 <string>YYYY-MM-DD</string>
                 </property>
                </widget>
               </item>
@@ -1093,7 +1102,7 @@ QPushButton
      <string>Go to Inventory</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>

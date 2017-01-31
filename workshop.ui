@@ -686,6 +686,12 @@ font: bold;</string>
              </item>
              <item>
               <widget class="QLineEdit" name="templineEdit">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="font">
                 <font>
                  <family>Calibri</family>
@@ -694,6 +700,9 @@ font: bold;</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">width: 105px;</string>
+               </property>
+               <property name="placeholderText">
+                <string>YYYY-MM-DD</string>
                </property>
               </widget>
              </item>

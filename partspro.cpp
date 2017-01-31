@@ -13,6 +13,10 @@ partspro::partspro(bool adminMode, QWidget *parent) :
 
 
     ui->setupUi(this);
+
+    this->showMaximized();
+
+    setValidator();
     aM=adminMode;
     if(adminMode == 1)
     {
@@ -259,7 +263,7 @@ void partspro::on_todaypushButton_clicked()
     QDate d1;
 
 
-   QString today = d1.currentDate().toString("yyyy/MM/dd");
+   QString today = d1.currentDate().toString("yyyy-MM-dd");
 
    ui->OdatelineEdit_4->setText( today );
 
@@ -269,4 +273,10 @@ void partspro::adminView()
   ui->ClearpushButton_3->setDisabled(1);
   ui->EditpushButton_2->setDisabled(1);
   ui->DeleterpushButton_7->setDisabled(1);
+}
+void partspro::setValidator()
+{
+     QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+     ui->OdatelineEdit_4->setValidator(new QRegExpValidator(exp4));
+     ui->EdatelineEdit_3->setValidator(new QRegExpValidator(exp4));
 }

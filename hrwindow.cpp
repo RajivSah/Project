@@ -21,6 +21,8 @@ hrwindow::hrwindow(bool adminMode, QWidget *parent) :
 
     ui->setupUi(this);
 
+    this->showMaximized();
+
     setInitails();
     setInputValidator();
 

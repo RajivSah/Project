@@ -57,6 +57,8 @@ private slots:
 
     void on_sendentrypushButton_4_clicked();
 
+    void on_lineEdit_date_cursorPositionChanged(int arg1, int arg2);
+
 private:
     Ui::partstore *ui;
     QMessageBox message;

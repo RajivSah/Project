@@ -9,6 +9,7 @@ Admin::Admin(QWidget *parent) :
     ui(new Ui::Admin)
 {
     ui->setupUi(this);
+    ui->tabWidget->setCurrentIndex(0);
 
 
 }
@@ -29,7 +30,8 @@ void Admin::chooseDepartment()
     }
     else if(Department=="Sales")
     {
-
+        sales *sal=new sales(1);
+        sal->show();
     }
     else if (Department=="Workshop")
     {
@@ -64,6 +66,7 @@ void Admin::on_okPushButton_clicked()
 
 void Admin::on_tabWidget_tabBarClicked(int index)
 {
+    qDebug()<<index;
     if(!connector.db.open())
     {
         return;

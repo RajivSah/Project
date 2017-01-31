@@ -10,6 +10,7 @@ workshop::workshop(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::workshop)
 {
+    this->showMaximized();
     ui->setupUi(this);
     if(adminMode == 1)
     {
@@ -493,7 +494,7 @@ void workshop::on_pushButton_2_clicked()
     QDate d1;
 
 
-   QString today = d1.currentDate().toString("yyyy/MM/dd");
+   QString today = d1.currentDate().toString("yyyy-MM-dd");
 
    ui->templineEdit->setText( today );
 }

@@ -59,6 +59,7 @@ private slots:
     void initialconditions(bool);
 
     void on_todaypushButton_clicked();
+    void setValidator();
 
 private:
     Ui::partspro *ui;

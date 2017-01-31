@@ -49,7 +49,7 @@ void MainWindow::on_LoginButton_clicked()
 
     if(!db.open())
     {
-
+        qDebug()<<"cannot connect";
         msgBox.setText("Cannot Connecct to the Database");
         msgBox.setWindowTitle("ERROR");
         msgBox.exec();
@@ -83,6 +83,8 @@ void MainWindow::on_LoginButton_clicked()
     }
     else if(Role=="Sales")
     {
+        sales *sal=new sales();
+        sal->show();
 
     }
     else if (Role=="Workshop")

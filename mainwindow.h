@@ -9,6 +9,7 @@
 #include "admin.h"
 #include "partstore.h"
 #include "workshop.h"
+#include "sales.h"
 
 
 namespace Ui {

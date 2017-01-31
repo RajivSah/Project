@@ -488,7 +488,10 @@ border:1px solid gray;
                   </size>
                  </property>
                  <property name="inputMask">
-                  <string>9999/99/99</string>
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>YYYY-MM-DD</string>
                  </property>
                 </widget>
                </item>
