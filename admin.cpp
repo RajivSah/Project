@@ -48,6 +48,12 @@ void Admin::chooseDepartment()
         partspro *pro=new partspro(1);
         pro->show();
     }
+    else if(Department=="Analysis")
+    {
+        Analysis *ana=new Analysis();
+        ana->show();
+
+    }
     else
     {
         qDebug()<<"nowhere";

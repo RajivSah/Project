@@ -31,12 +31,15 @@ sales::sales(bool adminMode, QWidget *parent) :
         {
             QSqlQuery *qryForCombo=new QSqlQuery(connector.db);
             qryForCombo->exec("select name from employeetable where status=1 ");
+            //ui->soldByCombo->setCurrentText("Others");
+            ui->soldByCombo->addItem("Others");
             while (qryForCombo->next())
             {
                 ui->soldByCombo->addItem(qryForCombo->value(0).toString());
 
             }
-            ui->soldByCombo->addItem("None");
+            //ui->soldByCombo->addItem("None");
+
             connector.db.close();
 
          }
@@ -68,7 +71,7 @@ void sales::on_AddButton_clicked()
         {
             QSqlQuery *qryToInsert=new QSqlQuery(connector.db);
 
-            qryToInsert->prepare("INSERT INTO tbl_customer(VRN,model,VIN,customerName,contactNumber,driverContact,soldBy,soldDate) VALUES(:vrn,:model,:vin,:customerName,:contactNo,:driver,:soldBy,:date)");
+            qryToInsert->prepare("INSERT INTO tbl_customer(VRN,model,VIN,customerName,contactNumber,driverContact,soldBy,soldDate,LoC,deliveryDate) VALUES(:vrn,:model,:vin,:customerName,:contactNo,:driver,:soldBy,:date,:loc,:delivery)");
             qryToInsert->bindValue(":vrn",ui->vrn->text());
             qryToInsert->bindValue(":vin",ui->vin->text());
             qryToInsert->bindValue(":model",ui->model->text());
@@ -77,6 +80,8 @@ void sales::on_AddButton_clicked()
             qryToInsert->bindValue(":driver",ui->driverNameContact->text());
             qryToInsert->bindValue(":soldBy",ui->soldByCombo->currentText());
             qryToInsert->bindValue(":date",ui->dateOfSale->text());
+            qryToInsert->bindValue(":loc",ui->Loc->text());
+            qryToInsert->bindValue(":delivery",ui->deliveryDate->text());
                 if(qryToInsert->exec())
                     qDebug()<<"Data Inserted successfully";
                 else
@@ -84,7 +89,8 @@ void sales::on_AddButton_clicked()
 
             connector.db.close();
             connector.db.removeDatabase("QMYSQL");
-
+            on_ClearButton_clicked();
+            ui->statusbar->showMessage("Added Successfully");
         }
 
         else
@@ -107,6 +113,8 @@ void sales::on_ClearButton_clicked()
     ui->model->clear();
     ui->driverNameContact->clear();
     ui->dateOfSale->setText(QDate::currentDate().toString("yyyy-MM-dd"));
+    ui->deliveryDate->clear();
+    ui->Loc->clear();
 
 }
 
@@ -138,6 +146,11 @@ void sales::on_SearchButton_textChanged(const QString &arg1)
 
 void sales::on_customerTableView_clicked(const QModelIndex &index)
 {
+    if(!connector.db.open())
+    {
+        qDebug()<<"Cannot connect to database";
+        return;
+    }
 
     QSqlQuery *query=new QSqlQuery(connector.db);
     query->prepare("SELECT * FROM tbl_customer WHERE customerID=:id");
@@ -153,9 +166,23 @@ void sales::on_customerTableView_clicked(const QModelIndex &index)
 
         ui->contactNoSearched->setText(query->value("contactNumber").toString());
         ui->driverNameContactSearched->setText(query->value("driverContact").toString());
-        ui->soldBySearched->setText(query->value("soldBy").toString());
-        ui->dateOfSaleSearched->setText(query->value("soldDate").toString());
 
+        QString soldBy=query->value("soldBy").toString();
+        ui->soldByComboSearched->clear();
+        QSqlQuery *qryForCombo=new QSqlQuery(connector.db);
+        qryForCombo->exec("select name from employeetable where status=1 ");
+        ui->soldByComboSearched->addItem("Others");
+        while (qryForCombo->next())
+        {
+            ui->soldByComboSearched->addItem(qryForCombo->value(0).toString());
+
+        }
+        ui->soldByComboSearched->setCurrentText(soldBy);
+        ui->dateOfSaleSearched->setText(query->value("soldDate").toString());
+        ui->LoCSearched->setText(query->value("LoC").toString());
+        ui->deliveryDateSearched->setText(query->value("deliveryDate").toString());
+
+        connector.db.close();
     }
 
 
@@ -166,8 +193,13 @@ void sales::on_customerTableView_clicked(const QModelIndex &index)
 
 void sales::on_updateBtn_clicked()
 {
+    if(!connector.db.open())
+    {
+        qDebug("failed to open database");
+        return;
+    }
     QSqlQuery *updateQuery=new QSqlQuery(connector.db);
-    updateQuery->prepare("UPDATE tbl_customer SET VRN=:vrn, model=:model,VIN=:vin, customerName=:customerName,contactNumber=:contact,driverContact=:driver,soldDate=:date WHERE customerID=:id");
+    updateQuery->prepare("UPDATE tbl_customer SET VRN=:vrn, model=:model,VIN=:vin, customerName=:customerName,contactNumber=:contact,driverContact=:driver,soldDate=:date ,soldBy=:soldBy ,LoC=:loc, deliveryDate=:delivery WHERE customerID=:id");
     updateQuery->bindValue(":vrn",ui->vrnSearched->text());
     updateQuery->bindValue(":model",ui->modelSearched->text());
     updateQuery->bindValue(":vin",ui->vinSearched->text());
@@ -176,6 +208,9 @@ void sales::on_updateBtn_clicked()
     updateQuery->bindValue(":driver",ui->driverNameContactSearched->text());
     updateQuery->bindValue(":id",customerID);
     updateQuery->bindValue(":date",ui->dateOfSaleSearched->text());
+    updateQuery->bindValue(":soldBy",ui->soldByComboSearched->currentText());
+    updateQuery->bindValue(":loc",ui->LoCSearched->text());
+    updateQuery->bindValue(":delivery",ui->deliveryDateSearched->text());
     if(updateQuery->exec())
     {
         qDebug()<<"Updated";
@@ -187,12 +222,18 @@ void sales::on_updateBtn_clicked()
         ui->statusbar->showMessage("Update Failed");
         qDebug()<<"Error "<<updateQuery->lastError();
     }
+    connector.db.close();
 
 
 }
 
 void sales::on_removeBtn_clicked()
 {
+    if(!connector.db.open())
+    {
+        qDebug("failed to open database");
+        return;
+    }
     QSqlQuery *removeQuery=new QSqlQuery(connector.db);
     removeQuery->prepare("DELETE FROM tbl_customer WHERE customerID=:id");
 
@@ -203,11 +244,13 @@ void sales::on_removeBtn_clicked()
         qDebug()<<"Removed";
         on_SearchButton_textChanged(ui->SearchButton->text());
         ui->statusbar->showMessage("Removed Successfully");
-        on_ClearButton_clicked();
+        on_SearchButton_textChanged(ui->SearchButton->text());
+        clearSearch();
     }else
     {   ui->statusbar->showMessage("Failed to Removed Data");
         qDebug()<<removeQuery->lastError();
     }
+    connector.db.close();
 }
 void sales::adminView()
 {
@@ -218,7 +261,102 @@ void sales::adminView()
 
 void sales::setValidator()
 {
-    QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+    QRegExp exp("[0-9]{5,10}");//number
+    QRegExp name("[a-z A-Z]{0,30}");//text only
+    QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");//date yyyy-mm-dd
+    QRegExp varchar("[a-z A-Z 0-9]{0,30}");//varchar
     ui->dateOfSale->setValidator(new QRegExpValidator(exp4));
     ui->dateOfSaleSearched->setValidator(new QRegExpValidator(exp4));
+    ui->deliveryDate->setValidator(new QRegExpValidator(exp4));
+    ui->deliveryDateSearched->setValidator(new QRegExpValidator(exp4));
+
+    ui->contactNo->setValidator(new QRegExpValidator(exp));
+    ui->contactNoSearched->setValidator(new QRegExpValidator(exp));
+
+    ui->customerName->setValidator(new QRegExpValidator(name));
+    ui->customerNameSearched->setValidator(new QRegExpValidator(name));
+
+    ui->driverNameContact->setValidator(new QRegExpValidator(varchar));
+    ui->driverNameContactSearched->setValidator(new QRegExpValidator(varchar));
+    ui->vin->setValidator(new QRegExpValidator(varchar));
+    ui->vinSearched->setValidator(new QRegExpValidator(varchar));
+    ui->vrn->setValidator(new QRegExpValidator(varchar));
+    ui->vrnSearched->setValidator(new QRegExpValidator(varchar));
+    ui->Loc->setValidator(new QRegExpValidator(varchar));
+    ui->LoCSearched->setValidator(new QRegExpValidator(varchar));
+
+
+}
+
+void sales::clearSearch()
+{
+    ui->customerNameSearched->clear();
+    ui->contactNoSearched->clear();
+    ui->vrnSearched->clear();
+    ui->vinSearched->clear();
+    ui->driverNameContactSearched->clear();
+    ui->modelSearched->clear();
+    ui->soldByComboSearched->clear();
+    ui->dateOfSaleSearched->clear();
+    ui->LoCSearched->clear();
+    ui->deliveryDateSearched->clear();
+}
+
+
+void sales::on_addModel_clicked()
+{
+    if(ui->newModelName->text()!=""){
+        if(connector.db.open()){
+            QSqlQuery *addModelQuery=new QSqlQuery(connector.db);
+            addModelQuery->prepare("insert into carmodel(model) VALUES (:model)");
+            addModelQuery->bindValue(":model",ui->newModelName->text());
+            if(!addModelQuery->exec()){
+                ui->statusbar->showMessage("Cannot add to the database");
+
+            }
+            else
+            {
+                ui->newModelName->clear();
+            }
+
+        }
+
+
+    }
+
+}
+
+void sales::on_searchButton_textChanged(const QString &arg1)
+{
+    if(connector.db.open())
+    {
+        qDebug()<<"Connected";
+        QSqlQueryModel *model=new QSqlQueryModel();
+
+        model->setQuery("SELECT * FROM carmodel WHERE model LIKE '%"+arg1+"%'",connector.db);
+        ui->tableViewModel->setModel(model);
+        ui->tableViewModel->hideColumn(0);
+        ui->tableViewModel->setSelectionBehavior(QAbstractItemView::SelectRows);
+        for (int c = 0; c < ui->tableViewModel->horizontalHeader()->count(); ++c)
+        {
+            ui->tableViewModel->horizontalHeader()->setSectionResizeMode(
+                c, QHeaderView::Stretch);
+        }
+
+    }
+
+}
+
+void sales::on_tableViewModel_clicked(const QModelIndex &index)
+{
+    if(!connector.db.open())
+    {
+        qDebug()<<"Cannot connect to database";
+        return;
+    }
+        ui->modelName->setText(index.sibling(index.row(),1).data().toString());
+        ui->totalQuantity->setText(index.sibling(index.row(),2).data().toString());
+
+
+
 }

@@ -119,7 +119,7 @@ model = new QSqlQueryModel();
 
 }
 
-void workshop::on_Search_lineEdit_textChanged(const QString &arg1)
+void workshop::on_Search_lineEdit_textChanged( )
 {
     refreshTable();
 

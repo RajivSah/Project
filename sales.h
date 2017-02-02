@@ -21,6 +21,7 @@ public:
 
     void adminView();
     void setValidator();
+    void clearSearch();
 private slots:
     void on_AddButton_clicked();
 
@@ -40,6 +41,11 @@ private slots:
 
     void on_removeBtn_clicked();
 
+    void on_addModel_clicked();
+
+    void on_searchButton_textChanged(const QString &arg1);
+
+    void on_tableViewModel_clicked(const QModelIndex &index);
 
 private:
     Ui::sales *ui;

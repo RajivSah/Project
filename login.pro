@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql uitools
+QT       += core gui sql uitools printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +32,9 @@ SOURCES += main.cpp\
     partspro.cpp \
     workshop.cpp \
     admin.cpp \
-    sales.cpp
+    sales.cpp \
+    analysis.cpp \
+    qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
     hrwindow.h \
@@ -44,7 +46,9 @@ HEADERS  += mainwindow.h \
     workshop.h \
     admin.h \
     sales.h \
-    databasestructure.h
+    databasestructure.h \
+    analysis.h \
+    qcustomplot.h
 
 FORMS    += mainwindow.ui \
     hrwindow.ui \
@@ -54,7 +58,8 @@ FORMS    += mainwindow.ui \
     partspro.ui \
     workshop.ui \
     admin.ui \
-    sales.ui
+    sales.ui \
+    analysis.ui
 
 RESOURCES += \
     reso.qrc

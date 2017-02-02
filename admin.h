@@ -11,6 +11,7 @@
 #include "dbconnection.h"
 #include "QMessageBox"
 #include "sales.h"
+#include "analysis.h"
 namespace Ui {
 class Admin;
 }

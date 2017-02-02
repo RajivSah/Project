@@ -42,7 +42,7 @@ public:
     void adminView();
 
 private slots:
-     void on_Search_lineEdit_textChanged(const QString &arg1);
+     void on_Search_lineEdit_textChanged();
      void on_tableView_clicked(const QModelIndex &index);
      void on_Add_clicked();
      void on_updatepush_clicked();

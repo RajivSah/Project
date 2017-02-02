@@ -451,11 +451,4 @@ void partstore::adminView()
     ui->pushButton_newEdit->setDisabled(1);
 }
 
-void partstore::on_lineEdit_date_cursorPositionChanged(int arg1, int arg2)
-{
-    if(ui->lineEdit_date->text()=="    -  -  ")
-    {
-        qDebug()<<"date cursor position changed";
-        SetCursorPos(0,0);
-    }
-}
+

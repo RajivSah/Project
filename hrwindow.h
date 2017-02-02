@@ -40,34 +40,22 @@ private slots:
      void on_AddButton_clicked();
 
 
-     void on_searchButton_textChanged(const QString &arg1);
-
-     void on_tableView_clicked(const QModelIndex &index);
-     void detailSearchResult(int);
-
-
      void on_searchButton_2_textChanged(const QString &arg1);
 
      void on_tableView_2_clicked(const QModelIndex &index);
 
      void on_AddButton_5_clicked();
-
-     void on_searchButton_3_textChanged(const QString &arg1);
-
-     void on_tableView_3_clicked(const QModelIndex &index);
-
-     void on_removeButton_clicked();
-
+     void on_remove_Button_clicked();
+     void clearAfterRemove();
 
 private:
     Ui::hrwindow *ui;
     QSqlQueryModel *model1=new QSqlQueryModel();
     QSqlQueryModel *model2=new QSqlQueryModel();
     QSqlQueryModel *model3=new QSqlQueryModel();
-
     int searchKey1;
     int searchKey2;
-    int searchKey3;
+
 
 };
 
