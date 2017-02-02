@@ -14,39 +14,29 @@
 #include <QStringList>
 
 
-hrwindow::hrwindow(QWidget *parent) :
+hrwindow::hrwindow(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::hrwindow)
 {
-    //
+
     ui->setupUi(this);
+
+    this->showMaximized();
 
     setInitails();
     setInputValidator();
 
-
-
-/*    if(connector.connect())
+    if(adminMode == 1)
     {
-        qDebug() << "Database Connected";
+        adminView();
     }
-    else
-        qDebug() << "Database Error";
-*/
-//    connect(ui->searchButton, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-//    connect(ui->searchButton_2, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-//    connect(ui->searchButton_3, SIGNAL(textChanged(QString)), this, SLOT(searchFunction(QString)));
-
-
-
-
 
 }
 void hrwindow::setInitails()
 {
     setSizes();
-    ui->tableView->setAlternatingRowColors(true);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView_2->setAlternatingRowColors(true);
+    ui->tableView_2->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     setCentralWidget(ui->tabWidget);
 
@@ -64,13 +54,6 @@ void hrwindow::setInitails()
     effect->setColor(Qt::gray);
     ui->groupBox->setGraphicsEffect(effect);
 
-    QGraphicsDropShadowEffect *effect2= new QGraphicsDropShadowEffect();
-
-    effect2->setBlurRadius(5);
-    effect2->setOffset(0,0);
-    effect2->setColor(Qt::gray);
-
-    ui->groupBox_2->setGraphicsEffect(effect2);
 
     QGraphicsDropShadowEffect *effect3 = new QGraphicsDropShadowEffect();
 
@@ -80,21 +63,7 @@ void hrwindow::setInitails()
 
     ui->groupBox_3->setGraphicsEffect(effect3);
 
-    QGraphicsDropShadowEffect *effect4 = new QGraphicsDropShadowEffect();
 
-    effect4->setBlurRadius(5);
-    effect4->setOffset(0,0);
-    effect4->setColor(Qt::gray);
-
-    ui->groupBox_4->setGraphicsEffect(effect4);
-
-    QGraphicsDropShadowEffect *effect5 = new QGraphicsDropShadowEffect();
-
-    effect5->setBlurRadius(5);
-    effect5->setOffset(0,0);
-    effect5->setColor(Qt::gray);
-
-    ui->tableView->setGraphicsEffect(effect5);
 
     QGraphicsDropShadowEffect *effect6 = new QGraphicsDropShadowEffect();
 
@@ -104,13 +73,6 @@ void hrwindow::setInitails()
 
     ui->tableView_2->setGraphicsEffect(effect6);
 
-    QGraphicsDropShadowEffect *effect7 = new QGraphicsDropShadowEffect();
-
-    effect7->setBlurRadius(5);
-    effect7->setOffset(0,0);
-    effect7->setColor(Qt::gray);
-
-    ui->tableView_3->setGraphicsEffect(effect7);
 
 
 
@@ -241,102 +203,6 @@ void hrwindow::on_AddButton_clicked()//add record
 
 
 
-void hrwindow::on_searchButton_textChanged(const QString &arg1)//search record
-{
-    if(!connector.db.open())
-    {
-        qDebug()<<"cannot connet "<<connector.db.lastError();
-        return;
-    }
-    else
-    {
-
-    model1->setQuery("SELECT id,Name,post,addressCity FROM employeetable WHERE Name LIKE '%"+arg1+"%' OR addressCity LIKE '%"+arg1+"%' OR post LIKE '%"+arg1+"%' OR addressArea LIKE '%"+arg1+"%'" );
-    ui->tableView->setModel(model1);
-    ui->tableView->hideColumn(0);
-    ui->tableView->setColumnWidth(1,ui->tableView->width()/3);
-    ui->tableView->setColumnWidth(2,ui->tableView->width()/3);
-    ui->tableView->setColumnWidth(3,ui->tableView->width()/3);
-    ui->tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    connector.db.close();
-    }
-  }
-
-void hrwindow::on_tableView_clicked(const QModelIndex &index)//display search
-{
-    if(!connector.db.open())
-    {
-        qDebug()<<"cannot connet "<<connector.db.lastError();
-        return;
-    }
-    else
-    {
-        QModelIndex index1 = model1->index(index.row(),0);
-        searchKey1= index1.data().toInt();
-        qDebug()<<searchKey1;
-        detailSearchResult(searchKey1);
-
-
-        connector.db.close();
-    }
-
-
-
-}
-void hrwindow::detailSearchResult(int searchKey)
-{
-    if(!connector.db.open())
-    {
-        qDebug()<<"cannot connet "<<connector.db.lastError();
-        return;
-    }
-    else
-    {
-        QSqlQuery query;
-        query.prepare("SELECT * FROM employeetable WHERE ID= ?");
-        query.addBindValue(searchKey);
-        if(query.exec())
-        {
-
-            query.next();
-            QStringList list = query.value(1).toString().split(QRegExp("\\s+"), QString::SkipEmptyParts);
-            ui->firstNameSearch->setText(list.at(0));
-
-            ui->lastNameSearch->setText(list.at(1));
-            ui->contactSearch->setText(query.value(2).toString());
-
-
-            if(query.value(3).toBool())
-            {   qDebug()<<query.value(3).toBool();
-                ui->genderLineEdit->setText("Male");}
-            else
-                ui->genderLineEdit->setText("Female");
-
-            ui->addressAreaSearch->setText(query.value(4).toString());
-            ui->addresscitySearch->setText(query.value(5).toString());
-            ui->addressDistrictSearch->setText(query.value(6).toString());
-            ui->salarySearch->setText(query.value(7).toString());
-            ui->postSearch->setCurrentText(query.value(8).toString());
-
-            if(query.value(9).toBool()==1)
-                ui->statusSearch->setText("Active");
-            else
-                ui->statusSearch->setText("Inactive");
-
-            ui->qualificationSeach->setText(query.value(10).toString());
-            ui->DOBeditSearch->setText(query.value(11).toString());
-
-            ui->statusbar->showMessage("Search Sucessfull");
-        }
-        else
-        {
-            qDebug()<<"did not execute query";
-        }
-
-        connector.db.close();
-    }
-}
 
 void hrwindow::setInputValidator()
 {
@@ -365,11 +231,13 @@ void hrwindow::on_searchButton_2_textChanged(const QString &arg1)//search of  ed
     model2->setQuery("SELECT id,Name,post,addressCity FROM employeetable WHERE Name LIKE '%"+arg1+"%' OR addressCity LIKE '%"+arg1+"%' OR post LIKE '%"+arg1+"%' OR addressArea LIKE '%"+arg1+"%'" );
     ui->tableView_2->setModel(model2);
     ui->tableView_2->hideColumn(0);
-    ui->tableView_2->setColumnWidth(1,ui->tableView->width()/3);
-    ui->tableView_2->setColumnWidth(2,ui->tableView->width()/3);
-    ui->tableView_2->setColumnWidth(3,ui->tableView->width()/3);
     ui->tableView_2->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableView_2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    for (int c = 0; c < ui->tableView_2->horizontalHeader()->count(); ++c)
+    {
+        ui->tableView_2->horizontalHeader()->setSectionResizeMode(
+            c, QHeaderView::Stretch);
+    }
 
     connector.db.close();
     }
@@ -490,90 +358,21 @@ void hrwindow::on_AddButton_5_clicked()//update button clicked
 
 }
 
-void hrwindow::on_searchButton_3_textChanged(const QString &arg1)// remove text changed search bar
+
+
+
+
+
+void hrwindow::adminView()
 {
-    if(!connector.db.open())
-    {
-        qDebug()<<"cannot connet "<<connector.db.lastError();
-        return;
-    }
-    else
-    {
-
-    model3->setQuery("SELECT id,Name,post,addressCity FROM employeetable WHERE Name LIKE '%"+arg1+"%' OR addressCity LIKE '%"+arg1+"%' OR post LIKE '%"+arg1+"%' OR addressArea LIKE '%"+arg1+"%'" );
-    ui->tableView_3->setModel(model3);
-    ui->tableView_3->hideColumn(0);
-    ui->tableView_3->setColumnWidth(1,ui->tableView->width()/3);
-    ui->tableView_3->setColumnWidth(2,ui->tableView->width()/3);
-    ui->tableView_3->setColumnWidth(3,ui->tableView->width()/3);
-    ui->tableView_3->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->tableView_3->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    connector.db.close();
-    }
-}
-
-void hrwindow::on_tableView_3_clicked(const QModelIndex &index)//table view of table view
-{
-
-    if(!connector.db.open())
-    {
-        qDebug()<<"cannot connet "<<connector.db.lastError();
-        return;
-    }
-    else
-    {
-        QModelIndex index1 = model3->index(index.row(),0);
-        searchKey3= index1.data().toInt();
-        qDebug()<<searchKey3;
-
-
-        QSqlQuery query;
-        query.prepare("SELECT * FROM employeetable WHERE ID= ?");
-        query.addBindValue(searchKey3);
-        if(query.exec())
-        {
-
-            query.next();
-            QStringList list = query.value(1).toString().split(QRegExp("\\s+"), QString::SkipEmptyParts);
-            ui->firstNameRemove->setText(list.at(0));
-
-            ui->lastNameRemove->setText(list.at(1));
-            ui->contactRemove->setText(query.value(2).toString());
-
-
-            if(query.value(3).toBool())
-            {   qDebug()<<query.value(3).toBool();
-                ui->maleRadioRemove->setChecked(1);}
-            else
-                ui->femaleRadioRemove->setChecked(1);
-
-            ui->addressAreaRemove->setText(query.value(4).toString());
-            ui->addressCityRemove->setText(query.value(5).toString());
-            ui->addressDistrictremove->setText(query.value(6).toString());
-            ui->salaryRemove->setText(query.value(7).toString());
-            ui->postremove->setCurrentText(query.value(8).toString());
-
-            if(query.value(9).toBool()==1)
-                ui->activeRadioremove->setChecked(1);
-            else
-                ui->inactiveRadioRemove->setChecked(1);
-
-            ui->qualificationInputRemove->setText(query.value(10).toString());
-            ui->DOBremove->setText(query.value(11).toString());
-        }
-        else
-        {
-            qDebug()<<"did not execute query";
-        }
-
-
-        connector.db.close();
+    ui->tabWidget->removeTab(3);
+    ui->tabWidget->removeTab(2);
+    ui->tabWidget->removeTab(0);
 
 }
-}
 
-void hrwindow::on_removeButton_clicked()//remove button click
+
+void hrwindow::on_remove_Button_clicked()
 {
     if(!connector.db.open())
     {
@@ -582,15 +381,15 @@ void hrwindow::on_removeButton_clicked()//remove button click
     }
     else
     {
-    QSqlQuery query;
-    query.prepare("DELETE FROM employeetable WHERE id = ?");
-    query.addBindValue(searchKey3);
-    if(query.exec())
+    QSqlQuery *query=new QSqlQuery(connector.db);
+    query->prepare("DELETE FROM employeetable WHERE id = ?");
+    query->addBindValue(searchKey2);
+    if(query->exec())
     {
       qDebug() << "Record Deleted  ";
         ui->statusbar->showMessage("Record Deleted Sucessful");
         connector.db.close();
-
+        clearAfterRemove();
     }
 
     else
@@ -599,7 +398,23 @@ void hrwindow::on_removeButton_clicked()//remove button click
 
     }
 
-    on_searchButton_3_textChanged(ui->searchButton_3->text());
+    on_searchButton_2_textChanged(ui->searchButton_2->text());
     connector.db.close();
     }
+}
+void hrwindow::clearAfterRemove()
+{
+    ui->address1Edit->clear();
+    ui->address2Edit->clear();
+    ui->address3Edit->clear();
+    ui->addressAreaEdit->clear();
+    ui->addressCityedit->clear();
+    ui->addressDistrictEdit->clear();
+    ui->contactEdit->clear();
+    ui->DOBEdit->clear();
+    ui->firstNameEdit->clear();
+    ui->lastNameEdit->clear();
+    ui->qualificationInputEdit->clear();
+    ui->salaryEdit->clear();
+
 }

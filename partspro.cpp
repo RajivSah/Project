@@ -2,17 +2,37 @@
 #include "partstore.h"
 #include "ui_partspro.h"
 #include "dbconnection.h"
+#include<QDesktopWidget>
+#include <QGraphicsDropShadowEffect>
 
 
-partspro::partspro(QWidget *parent) :
+partspro::partspro(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::partspro)
 {
 
 
     ui->setupUi(this);
+
+    this->showMaximized();
+
+    setValidator();
+    aM=adminMode;
+    if(adminMode == 1)
+    {
+        adminView();
+    }
+    setSizes();
 initialconditions( 0 );
 }
+
+void partspro::setSizes()
+{
+
+
+}
+
+
 partspro::~partspro()
 {
     delete ui;
@@ -46,6 +66,23 @@ void partspro::initialconditions( bool x )
     ui->ClearpushButton_3->setEnabled(x);
     ui->DeleterpushButton_7->setEnabled(x);
     ui->todaypushButton->setEnabled(x);
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
+
+    effect->setBlurRadius(5);
+    effect->setOffset(5,5);
+    effect->setColor(Qt::gray);
+
+    ui->maingroupbox->setGraphicsEffect(effect);
+
+
+    QGraphicsDropShadowEffect *effect1 = new QGraphicsDropShadowEffect();
+
+    effect1->setBlurRadius(5);
+    effect1->setOffset(5,5);
+    effect1->setColor(Qt::gray);
+
+
+    ui->searchlineEdit_5->setGraphicsEffect(effect1);
 
 }
 void partspro::on_tableView_clicked(const QModelIndex &index)
@@ -72,9 +109,14 @@ ui->CNameineEdit_6->setText( CustomerName );
 ui->RFNdatelineEdit_7->setText( RFNo );
 ui->quantitylineEdit_2->setText( quantity );
 
+if(aM==0){
 initialconditions(1);
 }
-
+else
+{
+    initialconditions(0);
+}
+}
 void partspro:: getData()
 {
    POrder = ui->porderlineEdit_2->text();
@@ -204,7 +246,7 @@ void partspro::finditemtable()
 void partspro::on_seeinventorypushButton_4_clicked()
 {
 this->close();
-partstore* ps = new partstore();
+partstore* ps = new partstore(aM);
 ps->show();
 }
 
@@ -221,8 +263,20 @@ void partspro::on_todaypushButton_clicked()
     QDate d1;
 
 
-   QString today = d1.currentDate().toString("yyyy/MM/dd");
+   QString today = d1.currentDate().toString("yyyy-MM-dd");
 
    ui->OdatelineEdit_4->setText( today );
 
+}
+void partspro::adminView()
+{
+  ui->ClearpushButton_3->setDisabled(1);
+  ui->EditpushButton_2->setDisabled(1);
+  ui->DeleterpushButton_7->setDisabled(1);
+}
+void partspro::setValidator()
+{
+     QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+     ui->OdatelineEdit_4->setValidator(new QRegExpValidator(exp4));
+     ui->EdatelineEdit_3->setValidator(new QRegExpValidator(exp4));
 }

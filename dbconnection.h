@@ -6,6 +6,8 @@
 
 class DBCONNECTION
 {
+private:
+
 public:
     QSqlDatabase db;
     DBCONNECTION( QString conName)

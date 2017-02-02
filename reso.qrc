@@ -16,6 +16,8 @@
         <file>icons/remove_user.png</file>
         <file>icons/mitsu_small.png</file>
         <file>icons/mitsu_trans.png</file>
+        <file>icons/Car-50.png</file>
+        <file>icons/Survey-50.png</file>
     </qresource>
     <qresource prefix="/res">
         <file>res/tab_bg.png</file>
@@ -23,5 +25,6 @@
         <file>res/login_form.png</file>
         <file>res/outlander-phev.png</file>
         <file>res/wshop_bg.png</file>
+        <file>res/parts.png</file>
     </qresource>
 </RCC>

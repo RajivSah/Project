@@ -33,15 +33,16 @@ public:
     DBCONNECTION d {"workshow"};
 
 
-    explicit workshop(QWidget *parent = 0);
+    explicit workshop(bool adminMode=0,QWidget *parent = 0);
     ~workshop();
 
     void setInitials();
     void setSizes();
     void getData();
+    void adminView();
 
 private slots:
-     void on_Search_lineEdit_textChanged(const QString &arg1);
+     void on_Search_lineEdit_textChanged();
      void on_tableView_clicked(const QModelIndex &index);
      void on_Add_clicked();
      void on_updatepush_clicked();

@@ -8,11 +8,17 @@
 #include <QDate>
 #include <QSqlTableModel>
 #include <QGraphicsDropShadowEffect>
-partstore::partstore(QWidget *parent) :
+partstore::partstore(bool adminMode, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::partstore)
 {
     ui->setupUi(this);
+    this->showMaximized();
+    aM=adminMode;
+    if(adminMode == 1)
+    {
+        adminView();
+    }
     setValidator();
     setInitials();
     addGraphicsEffect();
@@ -62,9 +68,9 @@ void partstore::on_tableView_clicked(const QModelIndex &index)
     ui->lineEdit_Name->setText(index.sibling(index.row(),1).data().toString());
     ui->lineEdit_SP->setText(index.sibling(index.row(),2).data().toString());
     ui->lineEdit_Quantity->setText(index.sibling(index.row(),3).data().toString());
-
+    if(aM==0){
     enable_GroupBox(1);
-
+    }
     prevID=index.sibling(index.row(),0).data().toString();//set prevID to the id of clicked row
 
     update_tableView_Detail();//refresh tableview_Detail
@@ -150,7 +156,7 @@ void partstore::on_pushButton_Update_clicked()
 
 void partstore::on_pushButton_2_clicked()
 {
-    ui->lineEdit_date->setText(QDate::currentDate().toString("yyyy/MM/dd"));
+    ui->lineEdit_date->setText(QDate::currentDate().toString("yyyy-MM-dd"));
 }
 
 void partstore::on_pushButton_newEdit_clicked()
@@ -257,6 +263,7 @@ void partstore::setValidator()
     QRegExp exp("[a-z A-Z 0,9]{0,20}");
     QRegExp exp2("[a-z A-Z]{0,20}");
     QRegExp exp3("[0-9]{0,9}");
+    QRegExp exp4("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
     ui->searchButton->setValidator(new QRegExpValidator(exp));
     ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
@@ -265,6 +272,7 @@ void partstore::setValidator()
     ui->lineEdit_SP->setValidator(new QRegExpValidator(exp3));
     ui->lineEdit_Name->setValidator(new QRegExpValidator(exp));
     ui->lineEdit_ID->setValidator(new QRegExpValidator(exp));
+    ui->lineEdit_date->setValidator(new QRegExpValidator(exp4));
 }
 
 void partstore::setInitials()
@@ -390,7 +398,7 @@ void partstore::on_removeentrypushButton_4_clicked()
         else
         {
             update_tableView_Detail();
-            displayMessage("Stock successfully removed" );
+            ui->statusbar->showMessage("Stock successfully removed" );
         }
 
     }
@@ -405,7 +413,7 @@ void partstore::on_tableView_Detail_clicked(const QModelIndex &index)
 void partstore::on_seepartspropushButton_3_clicked()
 {
     this->close();
-    partspro *pp = new partspro();
+    partspro *pp = new partspro(aM);
     pp->show();
 
 }
@@ -432,3 +440,15 @@ void partstore::on_sendentrypushButton_4_clicked()
   ui->lineEdit_date->clear();
   ui->lineEdit_newQuantity->clear();
 }}
+
+void partstore::adminView()
+{
+    ui->pushButton->setDisabled(1);
+    ui->removeentrypushButton_4->setDisabled(1);
+    ui->removerecordspushButton_5->setDisabled(1);
+    ui->sendentrypushButton_4->setDisabled(1);
+    ui->pushButton_Edit->setDisabled(1);
+    ui->pushButton_newEdit->setDisabled(1);
+}
+
+

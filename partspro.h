@@ -27,7 +27,7 @@ class partspro : public QMainWindow
 public:
 QSqlDatabase db;
 DBCONNECTION d{"partspro"};
-    explicit partspro(QWidget *parent = 0);
+    explicit partspro(bool adminMode=0,QWidget *parent = 0);
 
 
 
@@ -44,6 +44,7 @@ private slots:
 
     void getData();
     void showtable();
+    void setSizes();
     void on_DeleterpushButton_7_clicked();
 
     void on_ClearpushButton_3_clicked();
@@ -58,13 +59,17 @@ private slots:
     void initialconditions(bool);
 
     void on_todaypushButton_clicked();
+    void setValidator();
 
 private:
     Ui::partspro *ui;
     QSqlQuery *query ;
     QSqlQueryModel *model = new QSqlQueryModel();
 int Prid;
+bool aM;
 QString POrder,PNo, PName, EntryDate , OutDate, VRN,CustomerName,RFNo,quantity;
+public:
+  void adminView();
 };
 
 #endif // PARTSPRO_H

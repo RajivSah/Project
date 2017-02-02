@@ -6,6 +6,11 @@
 #include "hrwindow.h"
 #include "hr_splash.h"
 #include "addparts.h"
+#include "admin.h"
+#include "partstore.h"
+#include "workshop.h"
+#include "sales.h"
+
 
 namespace Ui {
 class MainWindow;

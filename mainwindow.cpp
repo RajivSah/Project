@@ -49,7 +49,7 @@ void MainWindow::on_LoginButton_clicked()
 
     if(!db.open())
     {
-
+        qDebug()<<"cannot connect";
         msgBox.setText("Cannot Connecct to the Database");
         msgBox.setWindowTitle("ERROR");
         msgBox.exec();
@@ -68,14 +68,37 @@ void MainWindow::on_LoginButton_clicked()
     if(query.size()==1)
     {
     ui->loginNotificationLabel->setText("");
-        /*msgBox.setText("Loged In");
-        msgBox.setWindowTitle("WELCOME");
-        msgBox.exec();
-        db.close();*/
-    hr_splash *hrSplash=new hr_splash();
+    query.next();
+    QString Role =query.value("Role").toString();
+    if(Role=="Admin")
+    {
+        Admin *admin=new Admin();
+        admin->show();
+    }
+    else if(Role=="HR")
+    {
+        hr_splash *hr=new hr_splash();
+        hr->show();
+
+    }
+    else if(Role=="Sales")
+    {
+        sales *sal=new sales();
+        sal->show();
+
+    }
+    else if (Role=="Workshop")
+    {
+        workshop *work=new workshop();
+        work->show();
+     }
+    else if (Role=="Parts Store")
+    {
+        partstore *parts=new partstore();
+        parts->show();
+    }
     this->close();
 
-    hrSplash->show();
         return;
 
 
