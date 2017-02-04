@@ -22,6 +22,7 @@ public:
     void adminView();
     void setValidator();
     void clearSearch();
+
 private slots:
     void on_AddButton_clicked();
 
