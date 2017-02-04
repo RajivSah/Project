@@ -365,9 +365,9 @@ void hrwindow::on_AddButton_5_clicked()//update button clicked
 
 void hrwindow::adminView()
 {
-    ui->tabWidget->removeTab(3);
-    ui->tabWidget->removeTab(2);
     ui->tabWidget->removeTab(0);
+    ui->remove_Button->setDisabled(1);
+    ui->AddButton_5->setDisabled(1);
 
 }
 
