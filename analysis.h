@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "dbconnection.h"
+#include "qcustomplot.h"
 
 namespace Ui {
 class Analysis;
@@ -16,15 +17,24 @@ public:
     explicit Analysis(QWidget *parent = 0);
     ~Analysis();
     DBCONNECTION connector{"analysis"};
-    void drawGraph();
+    void initializeGraph();
     void setInitials();
-    int month[12]={0};
+
 
 private slots:
     void on_drawButton_clicked();
+    void drawGraph();
 
 private:
     Ui::Analysis *ui;
+
+    int month[12]={0};
+    QVector<double> Data;
+    QCPBars *bar;
+    QVector<double> ticks;
+    QTimer *timer = new QTimer(this);
+    float move;
+    float time;
 };
 
 #endif // ANALYSIS_H

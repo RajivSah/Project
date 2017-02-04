@@ -1,6 +1,7 @@
 #include "analysis.h"
 #include "ui_analysis.h"
 #include <QSqlQuery>
+#include <QTimer>
 Analysis::Analysis(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Analysis)
@@ -126,26 +127,30 @@ void Analysis::setInitials()
 
 void Analysis::on_drawButton_clicked()
 {
+    move=0;
+    time=50;
     setInitials();
-
+    initializeGraph();
     drawGraph();
 //    this->resize(this->width()-1,this->height()-1);
 }
-void Analysis::drawGraph()
+void Analysis::initializeGraph()
 {
     ui->customPlot->clearPlottables();
-    QBrush gray(Qt::gray);
+    QBrush gray(Qt::white);
     qDebug()<<month[0]<<month[1]<<month[2]<<month[3]<<month[4]<<month[5]<<month[6]<<month[7]<<month[8]<<month[9]<<month[10]<<month[11];
     ui->customPlot->setBackground(gray);
     // create empty bar chart objects:
-    QCPBars *bar = new QCPBars(ui->customPlot->xAxis, ui->customPlot->yAxis);
+    bar= new QCPBars(ui->customPlot->xAxis, ui->customPlot->yAxis);
     bar->setName("barerative");
     bar->setPen(QPen(QColor(0, 168, 140).lighter(130)));
     bar->setBrush(QColor(0, 168, 140));
 
     // prepare x axis with country labels:
-    QVector<double> ticks;
+
     QVector<QString> labels;
+    labels.clear();
+    ticks.clear();
     ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7<<8<<9<<10<<11<<12;
     labels << "January" << "February" << "March" << "April" << "May" << "June" << "July"<<"August"<<"September"<<"October"<<"November"<<"December";
     QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
@@ -165,21 +170,32 @@ void Analysis::drawGraph()
     ui->customPlot->yAxis->setPadding(5); // a bit more space to the left border
     ui->customPlot->yAxis->setLabel("Total Sale");
 
-    // Add data:
-    QVector<double> Data;
-    float move=0;
-    while(move<1)
-    {
-    move=move+0.01;
-    Data.clear();
-    Data<<move*month[0]<<move*month[1]<<move*month[2]<<move*month[3]<<move*month[4]<<move*month[5]<<move*month[6]<<move*month[7]<<move*month[8]<<move*month[9]<<move*month[10]<<move*month[11];
-    this->thread()->msleep(50);
-    bar->setData(ticks, Data);
-    ui->customPlot->replot();
 
-
-    qDebug()<<Data;
-    this->resize(this->width()-1,this->height()-1);
-    this->resize(this->width()+1,this->height()+1);
     }
+void Analysis::drawGraph()
+{
+
+
+    if((int)move<1)
+{
+        move=move+0.02;
+        Data.clear();
+        Data<<move*month[0]<<move*month[1]<<move*month[2]<<move*month[3]<<move*month[4]<<move*month[5]<<move*month[6]<<move*month[7]<<move*month[8]<<move*month[9]<<move*month[10]<<move*month[11];
+        qDebug()<<Data;
+        bar->setData(ticks, Data);
+        ui->customPlot->replot();
+    qDebug()<<"move="<<move;
+    connect(timer, SIGNAL(timeout()), this, SLOT(drawGraph()));
+    timer->start(time);
+    if(time > 40)
+    {
+    time=time-2;
+    }
+    }
+    else
+    {
+
+        timer->stop();
+    }
+
 }
