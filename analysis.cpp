@@ -48,6 +48,7 @@ Analysis::Analysis(QWidget *parent) :
     }
 */
 
+    initializeGraph();
 
 
 }
@@ -144,7 +145,7 @@ void Analysis::initializeGraph()
     bar= new QCPBars(ui->customPlot->xAxis, ui->customPlot->yAxis);
     bar->setName("barerative");
     bar->setPen(QPen(QColor(0, 168, 140).lighter(130)));
-    bar->setBrush(QColor(0, 168, 140));
+    bar->setBrush(Qt::blue);
 
     // prepare x axis with country labels:
 
@@ -169,16 +170,21 @@ void Analysis::initializeGraph()
     ui->customPlot->yAxis->setRange(0, maxSaleMonthValue+2);
     ui->customPlot->yAxis->setPadding(5); // a bit more space to the left border
     ui->customPlot->yAxis->setLabel("Total Sale");
-
+    ui->customPlot->yAxis->moveRange(1);
 
     }
 void Analysis::drawGraph()
 {
 
 
-    if((int)move<1)
+    if(move<1)
 {
-        move=move+0.02;
+        move=move+0.1;
+        if(move>1)
+        {
+            move=1;
+            return;
+        }
         Data.clear();
         Data<<move*month[0]<<move*month[1]<<move*month[2]<<move*month[3]<<move*month[4]<<move*month[5]<<move*month[6]<<move*month[7]<<move*month[8]<<move*month[9]<<move*month[10]<<move*month[11];
         qDebug()<<Data;
@@ -186,16 +192,32 @@ void Analysis::drawGraph()
         ui->customPlot->replot();
     qDebug()<<"move="<<move;
     connect(timer, SIGNAL(timeout()), this, SLOT(drawGraph()));
+
     timer->start(time);
     if(time > 40)
     {
     time=time-2;
     }
     }
-    else
+    else if(move==1)
     {
-
+       move++;
         timer->stop();
+        Data.clear();
+        Data<<month[0]<<month[1]<<month[2]<<month[3]<<month[4]<<month[5]<<month[6]<<month[7]<<month[8]<<month[9]<<month[10]<<month[11];
+        qDebug()<<Data;
+        bar->setData(ticks, Data);
+        ui->customPlot->replot();
+        /*QCPItemText *phaseTracerText = new QCPItemText(ui->customPlot);
+        phaseTracerText->position->setType(QCPItemPosition::ptAxisRectRatio);
+        phaseTracerText->setPositionAlignment(Qt::AlignRight|Qt::AlignBottom);
+        phaseTracerText->position->setCoords(1.0, 0.95); // lower right corner of axis rect
+        phaseTracerText->setText("January February April May June July August September October November December");
+        phaseTracerText->setTextAlignment(Qt::AlignLeft);
+        phaseTracerText->setFont(QFont(font().family(), 9));
+        phaseTracerText->setPadding(QMargins(8, 0, 0, 0));*/
+
+//        ui->customPlot->replot();
     }
 
 }
